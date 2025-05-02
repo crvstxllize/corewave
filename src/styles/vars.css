@@ -1,0 +1,16 @@
+/* styles/vars.css */
+:root {
+    /* Шрифты */
+    --font-sans: 'Montserrat', sans-serif;
+  
+    /* Основные цвета */
+    --color-bg-main:        #000000;  /* фон «тёмных» страниц */
+    --color-text-primary:   #FFFFFF;  /* основной текст */
+    --color-ui-surface:     #151515;  /* фон карточек, кнопок */
+    --color-text-secondary: #7D7E82;  /* вторичный текст */
+    --color-text-tertiary:  #999999;  /* описания, мелкий текст */
+  
+    /* Градиент акцента */
+    --gradient-accent: linear-gradient(90deg, #BD3ECD 0%, #B24093 100%);
+  }
+  

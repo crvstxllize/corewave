@@ -1,0 +1,87 @@
+/* src/components/ui/about/aboutSection/aboutSection.module.css */
+.section {
+    max-width: 90ch;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    color: #bbb;
+    text-align: center;
+    margin-top: 10rem;
+  }
+  
+  .lineWrapper {
+    position: relative;
+    height: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Сначала «рисуем» вертикальную часть слева */
+  .lineWrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 120%;
+    border-left: 1px solid #7D7E82;
+    height: 0;
+    width: 0;
+    animation: drawDown 0.8s ease-out 2s forwards;
+  }
+  
+  /* Затем «рисуем» горизонтальную часть, уходящую налево */
+  .lineWrapper::after {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    right: -20%;
+    border-top: 1px solid #7D7E82;
+    width: 0;
+    animation: drawLeft 1.6s ease-out 2.8s forwards;
+  }
+  
+  .title {
+    position: absolute;
+    top: -140%;
+    left: calc(-22% + 1rem);
+    transform: translateX(50%);
+    background: #000;
+    padding: 0 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeIn 0.4s ease-out 0.8s forwards;
+  }
+  
+  .text p {
+    margin: 1.5rem 0;
+    font-size: 1.3rem;
+    line-height: 2;
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  
+  .text p:nth-child(1),
+  .text p:nth-child(2),
+  .text p:nth-child(3) {
+    animation: fadeDown 0.6s ease-out 0s forwards;
+  }
+  
+  @keyframes drawDown {
+    from { height: 0; }
+    to   { height: 1rem; }
+  }
+  
+  @keyframes drawLeft {
+    from { width: 0; }
+    to   { width: 140%; }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-1rem); }
+    to   { opacity: 1; transform: translateY(0);     }
+  }
+  
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-1rem); }
+    to   { opacity: 1; transform: translateY(0);     }
+  }

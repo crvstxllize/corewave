@@ -1,0 +1,40 @@
+/* src/components/ui/about/marquee/Marquee.module.css */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;         /* белый фон */
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeDown 0.8s ease-out forwards;
+  animation-delay: 2.2s; /* через 1.5 секунды после загрузки */
+}
+
+.track {
+  display: inline-block;
+  white-space: nowrap;
+  transform: translateX(0); /* стартовая позиция — полностью видно */
+  animation: scroll 115s linear infinite paused;
+}
+
+.track.play {
+  animation-play-state: running; /* запускаем только после delayMs */
+}
+
+.track span {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 2.1rem;
+  font-weight: bolder;
+  color: #000;               /* чёрный текст */
+}
+
+@keyframes scroll {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fadeDown {
+    0%   { opacity: 0; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0);     }
+  }

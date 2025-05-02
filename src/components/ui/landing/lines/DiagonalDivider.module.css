@@ -1,0 +1,18 @@
+.divider {
+  position: absolute;
+  width: var(--target-width);
+  height: var(--thickness);
+  background-color: var(--color);
+
+  /* изначально «сжато» по X: смотрим origin и угол */
+  transform-origin: var(--origin);
+  transform: rotate(var(--angle)) scaleX(0);
+
+  /* плавное разворачивание */
+  transition: transform 2.8s ease-out;
+}
+
+.visible {
+  /* когда вошли в viewport — разворачиваемся */
+  transform: rotate(var(--angle)) scaleX(1);
+}

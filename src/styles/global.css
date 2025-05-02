@@ -1,12 +1,20 @@
+@import "reset.css";
+@import "vars.css";
 /* styles ----------------- */
 
 /* blocks */
 html {
-    font-size: 16px;
-}
-body {
-    
-}
+    font-family: var(--font-sans);
+    font-size:   16px;
+    line-height: 1.5;
+  }
+  
+  body {
+    background-color: var(--color-bg-main);
+    color:            var(--color-text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;   /* убираем горизонтальный скролл по всему документу */
+  }
 
 
 /* tags styles -------------- */

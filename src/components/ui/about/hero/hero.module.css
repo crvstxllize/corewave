@@ -1,0 +1,25 @@
+    .hero {
+    /* Хочешь чуть ниже хедера — можно отступ сверху */
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+    .title {
+    font-size: 15vw;         /* адаптивный размер */
+    color: #fff;
+    font-weight: bold;
+    white-space: pre;       /* сохраняем пробелы */
+    transition: color 1.3s ease;
+  }
+  /* Сам мигающий курсор */
+    .cursor {
+    display: inline-block;
+    animation: blink 1s step-start infinite;
+  }
+  /* Ключевые кадры для blink */
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  

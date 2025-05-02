@@ -1,0 +1,122 @@
+  .header {
+    position: relative;   
+    z-index: 10;          /* чтобы он точно был над Hero */
+    width: 100%;
+    background-color: var(--color-bg-main);
+    margin-top: 20px;
+
+    transform: translateY(-100%);
+    opacity: 0;
+
+  /* запускаем анимацию при первом рендере */
+    animation: dropDown 2.4s ease-out forwards;
+  }
+
+  
+  .container {
+    width: 1568px;
+    height: 61px;
+    padding: 0 65px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  
+  /* Логотип */
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: 1px;
+  }
+  
+  /* Селектор языков */
+  .langSwitcher {
+    display: flex;
+    gap: 16px;       
+    margin-right: 120px;
+  }
+  
+  /* сами кнопки языков */
+  .lang {
+    background: none;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;    
+    color: var(--color-text-primary);
+    opacity: 0.5;        
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  
+  /* активный язык */
+  .lang.active {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  
+  /* Навигация */
+  .nav {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .navLink {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: .2s;
+  }
+  
+  .navLink:hover {
+    color: #BD3ECD;
+  }
+  
+  /* Кнопка Sign In */
+  .signIn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;    
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 126px;
+    height: 38px;
+    background-color: #222;
+    border-radius: 19px;
+    cursor: pointer;
+  
+    /* плавный переход фона */
+    transition: background-image 0.3s ease, transform 0.2s ease;
+  }
+  
+  .signIn:hover {
+    /* градиент фона кнопки */
+    background-image: var(--gradient-accent);
+    transform: scale(1.01);
+  }
+
+
+  @keyframes dropDown {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(10px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

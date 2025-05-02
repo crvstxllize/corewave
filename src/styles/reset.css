@@ -1,0 +1,66 @@
+/* Reset default styles ------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body improvements */
+html, body {
+    height: 100%;
+}
+
+body {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Remove default margin/padding */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove list styles */
+ul, ol {
+    list-style: none;
+}
+
+/* Reset links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Reset images and media */
+img, picture, video, iframe {
+    max-width: 100%;
+    display: block;
+}
+
+/* Reset form elements */
+button, input, textarea, select {
+    border: none;
+    background: none;
+    outline: none;
+    appearance: none;
+}
+
+/* Disabled button */
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Table reset */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    padding: 8px;
+}
+
