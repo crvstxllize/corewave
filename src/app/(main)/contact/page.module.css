@@ -1,0 +1,100 @@
+.container {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 4rem;
+}
+
+/* 1) Линия: рисуется из центра в обе стороны сразу */
+.divider {
+  width: 0;
+  height: 3px;
+  background-color: #151515;
+  margin: 0 auto 2rem;
+  animation: expandLine 2.5s ease-out 0.5s forwards;
+}
+
+@keyframes expandLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 80%;
+    opacity: 1;
+  }
+}
+
+/* 2) Контент: скрыт и смещён влево, «въезжает» после 0.8с (равно длительности линии) */
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: contentSlideIn 1s ease-out 2.5s forwards;
+  right: 7rem;
+  top: 3rem;
+}
+
+@keyframes contentSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.heading {
+  margin: 0 0 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #7D7E82;
+}
+
+.value {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.officeSection {
+  margin-top: 2rem;
+}
+
+.officeHeading {
+  margin: 0 0 .5rem;
+  font-size: 2.5rem;
+  font-weight: 550;
+  color: #ffffff;
+}
+
+.officeText {
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #7D7E82;
+}

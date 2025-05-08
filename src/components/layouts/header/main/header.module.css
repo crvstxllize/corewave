@@ -77,6 +77,10 @@
   .navLink:hover {
     color: #BD3ECD;
   }
+
+  .navLinkActive {
+    color: #BD3ECD; 
+  }
   
   /* Кнопка Sign In */
   .signIn {
