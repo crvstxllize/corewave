@@ -1,0 +1,118 @@
+/* src/components/ui/catalog/filterSidebar/FilterSidebar.module.css */
+
+.sidebar {
+  flex: 0 0 30rem;
+  padding-left: 11rem;
+  margin-top: 3rem;
+
+  opacity: 0;
+  transform: translateX(-40px);
+
+  animation: slideInSidebar 0.9s ease-out 4s forwards;
+}
+
+.group {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.available {
+  color: #7D7E82;   /* окрашиваем только слово Available */
+}
+
+.highlight {
+  font-weight: 500;
+  color: #ffffff;  /* заголовок группы остаётся белым */
+}
+
+.options {
+  list-style: none;
+  margin: 2rem 0 0;  /* отступ сверху 2rem перед чекбоксами */
+  padding: 0;
+}
+
+.option + .option {
+  margin-top: 1.2rem;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.labelWrapper.disabled {
+  cursor: not-allowed;
+}
+
+.checkbox {
+  /* Сбрасываем дефолтный вид */
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Состояние checked: фиолетовый фон и белая галочка */
+.checkbox:checked {
+  background-color: #BD3ECD;
+  border: none;
+}
+
+.checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Состояние disabled: серый текст и неактивный фон */
+.checkbox:disabled {
+  border-color: #333333;
+  background-color: #000;
+  cursor: not-allowed;
+}
+
+.labelText {
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin-left: 0.5rem;
+}
+
+.disabled .labelText {
+  color: #333333;
+}
+
+.separator {
+  height: 2px;
+  background-color: #7D7E82;
+  margin: 2.5rem 0;
+}
+
+
+@keyframes slideInSidebar {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

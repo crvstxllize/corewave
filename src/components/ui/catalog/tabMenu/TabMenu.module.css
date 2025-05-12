@@ -1,0 +1,79 @@
+/* src/components/ui/catalog/tabMenu/TabMenu.module.css */
+
+/* Корневой контейнер страницы */
+.container {
+  margin-left: 2rem;      /* выравниваем по тому же левому отступу, что и WayLink */
+  margin-top: 3rem;       /* отступ от WayLink на 5rem */
+  margin-right: 4rem;     /* симметрично левому отступу */
+
+  opacity: 0;
+  transform: translateX(-50px);
+
+  animation: slideIn 0.9s ease-out 3s forwards;
+}
+
+/* Большой заголовок */
+.heading {
+  font-size: 2.5rem;      
+  font-weight: 400;
+  color: #ffffff;
+  margin-left: 10.8rem;     /* симметрично левому отступу */
+}
+
+/* Меню табов */
+.menu {
+  display: flex;
+  justify-content: center;       /* все табы по центру */
+  gap: 3rem;
+  padding-bottom: 0.5rem;
+  margin-top: 5rem;              
+  margin-bottom: 2rem;     
+}
+
+/* Один таб */
+.tabItem {
+  background: transparent;
+  border: none;
+  color: #999999;
+  font-family: montserrat;
+  font-size: 1rem;
+  font-weight: 450;
+  padding: 0;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+/* Hover эффект */
+.tabItem:hover {
+  color: #BD3ECD;
+}
+
+/* Активный таб */
+.active {
+  color: #BD3ECD;
+  border-bottom: 2px solid #BD3ECD;
+}
+
+/* Описание */
+.description {
+  color: #999999;
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 600px;       /* ограничим ширину для читабельности */
+  margin: 0 auto;         /* по центру страницы */
+  text-align: center;     /* текст по центру */
+}
+
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

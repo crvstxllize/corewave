@@ -1,0 +1,5 @@
+/* page.module.css */
+.contentWrapper {
+  display: flex;
+  margin: 2rem 2rem 0; /* здесь 2rem сверху и по 2rem слева/справа */
+}

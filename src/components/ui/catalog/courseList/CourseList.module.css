@@ -1,0 +1,11 @@
+/* src/components/ui/catalog/courseList/CourseList.module.css */
+
+.list {
+  flex: 1;                        /* займет всё доступное место справа */
+  padding-left: 10rem;             /* отступ между сайдбаром и картами */
+  max-width: clamp(600px, 70vw, 1100px);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

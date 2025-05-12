@@ -1,0 +1,59 @@
+/* src/app/auth/auth.module.css */
+
+.authWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ECEFF1;
+  }
+  
+  .content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Карточка строго 473×716, но не больше экрана */
+  .authCard {
+    /* сами размеры по макету */
+    width: 90vw;
+    height: auto;
+    aspect-ratio: 473 / 716;
+    margin-bottom: 5rem;
+  
+    /* если экран уже — уменьшаем карточку */
+    max-width: 473px;
+    max-height: 716px;;
+  
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  
+    /* внутренние отступы — можно подправить под контент позже */
+    padding: 2rem 1.5rem;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* если контента мало — центрируем по вертикали */
+    justify-content: center;
+
+    opacity: 0;
+    animation: fadeInDown 0.9s ease-out forwards;
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  
+  

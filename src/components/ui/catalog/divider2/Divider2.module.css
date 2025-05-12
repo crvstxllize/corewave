@@ -1,0 +1,33 @@
+/* src/components/ui/catalog/divider2/Divider2.module.css */
+
+/* ключевые кадры для расширения из центра */
+@keyframes expand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.divider {
+  width: calc(100% - 4rem);
+  max-width: 1500px;
+  height: 2px;
+  margin: 5rem auto 2rem;
+  background-color: #7D7E82;
+
+  /* изначально спрятана в масштабе */
+  transform-origin: center;
+  transform: scaleX(0);
+  opacity: 0;
+
+  /* плавный переход opacity для полутоновой видимости */
+  transition: opacity 0.5s ease;
+}
+
+.visible {
+  /* запускаем анимацию expand и одновременно показываем */
+  animation: expand 2.5s ease-out forwards;
+  opacity: 1;
+}

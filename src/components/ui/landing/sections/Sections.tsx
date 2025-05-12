@@ -173,9 +173,9 @@ export default function Sections() {
             <span className={styles.whiteText}>networks</span>
           </blockquote>
           <ul className={styles.socialList}>
-            <li><a href="#" className={styles.socialLink1}>Instagram</a></li>
-            <li><a href="#" className={styles.socialLink2}>Telegram</a></li>
-            <li><a href="#" className={styles.socialLink3}>YouTube</a></li>
+            <li><a href="https://www.instagram.com/accounts/emailsignup/" target="_blank" rel="noopener noreferrer" className={styles.socialLink1}>Instagram</a></li>
+            <li><a href="https://web.telegram.org/" target="_blank" rel="noopener noreferrer" className={styles.socialLink2}>Telegram</a></li>
+            <li><a href="https://accounts.google.com/signup/v2/webcreateaccount?service=youtube" target="_blank" rel="noopener noreferrer" className={styles.socialLink3}>YouTube</a></li>
           </ul>
         </div>
 

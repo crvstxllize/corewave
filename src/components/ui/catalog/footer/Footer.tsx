@@ -1,8 +1,7 @@
-// ui/about/final/Footer.tsx
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import styles from './Footer.module.css'
+import styles from './footer.module.css'
 
 export default function Footer() {
   const ref = useRef<HTMLElement>(null)
@@ -18,7 +17,7 @@ export default function Footer() {
           obs.disconnect()
         }
       },
-      { root: null, rootMargin: '0px', threshold: 0.1 }
+      { root: null, rootMargin: '0px', threshold: 0 }
     )
 
     obs.observe(ref.current)

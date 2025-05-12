@@ -1,0 +1,28 @@
+.logo {
+  position: relative;
+  left: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.placeholder {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+}
+
+.backLink {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #b4379e;
+  text-decoration: none;
+  margin-top: auto;
+}

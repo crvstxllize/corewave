@@ -1,0 +1,24 @@
+/* src/components/ui/catalog/divider/Divider.module.css */
+
+.divider {
+  width: calc(100% - 4rem);   /* чтобы совпадать с отступами page */
+  max-width: 1500px;          /* по макету ширина контента */
+  height: 2px;
+  margin: 0 auto 2rem;        /* по центру, снизу 2rem отступ */
+  background-color: #7D7E82;
+  margin-top: 5rem;
+    
+  transform-origin: center;
+  transform: scaleX(0);
+
+  animation: expand 2.5s ease-out 1.5s forwards;
+}
+
+@keyframes expand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

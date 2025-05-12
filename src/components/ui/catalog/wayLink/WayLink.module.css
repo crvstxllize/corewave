@@ -1,0 +1,46 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: 1  rem;               
+  margin: 5rem 0 1rem 13rem;
+  opacity: 0;
+  transform: translateX(-40px);
+  /* Анимация: длительность 0.5s, задержка 1s, сохраняем конечное состояние */
+  animation: slideIn 0.9s ease-out 1s forwards;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  color: #ffffff;                
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.current {
+  color: #7D7E82;                /* белый для последнего элемента */
+  font-weight: 500;
+}
+
+.separator {
+  margin: 0 0.5rem;
+  color: #7D7E82;                /* цвет стрелки, как в линиях */
+}
+
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
