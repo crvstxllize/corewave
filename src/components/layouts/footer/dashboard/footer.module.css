@@ -1,0 +1,79 @@
+.footer {
+    position: relative;
+    width: 100%;
+    background-color: #ECEFF1; /* если нужно чуть светлее, иначе #FFFFFF */
+    padding: 0.8rem 0;
+    opacity: 0;
+    animation: fadeInDownFooter 0.9s ease-out forwards;
+    animation-delay: 0.8s;
+  }
+  
+  /* Центрируем контейнер копирайта+навигации по ширине карточки */
+  .container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  /* Копирайт */
+  .copy {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-left: -6rem;
+    padding-right: 3rem;
+  }
+  
+  
+  /* Навигация */
+  .nav {
+    display: flex;
+    align-items: center;
+    right: 5rem;
+    /* пробелы между ссылками будет делать псевдоэлемент */
+  }
+  
+  .nav a {
+    font-size: 0.80rem;
+    color: #B24093;
+    text-decoration: none;
+    /* чуть увеличение кликабельной зоны */
+    padding: 0 0.4rem;
+  }
+  
+  /* Разделитель между ссылками */
+  .nav a + a::before {
+    content: "│";
+    margin: 0 0.75rem;
+    color: #000;
+    user-select: none;
+  }
+  
+  /* Флаг и «Kazakhstan» */
+  .country {
+    position: absolute;
+    right: 21rem;
+    bottom: 0.8rem; /* вот здесь «прилипаем» к низу футера */
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .country span {
+    font-size: 0.85rem;
+    color: #000;
+  }
+
+  @keyframes fadeInDownFooter {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

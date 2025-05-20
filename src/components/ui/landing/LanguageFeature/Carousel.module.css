@@ -1,0 +1,108 @@
+/* Carousel.module.css */
+
+/* Контейнер карусели */
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12rem;
+}
+
+/* Стрелки */
+.arrow {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;         /* увеличили стрелки */
+  cursor: pointer;
+  padding: 0 2rem;         /* больше «воздуха» вокруг стрелок */
+  transition: color 0.3s;
+}
+.arrow:hover {
+  color: #BD3ECD;          /* подсветка при ховере */
+}
+
+/* Обёртка карточек */
+.cards {
+  display: flex;
+  gap: 5rem;               /* увеличили расстояние между карточками */
+  position: relative;
+  perspective: 1000px;
+}
+
+/* Сама карточка */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* горизонтальное центрирование */
+  justify-content: center; /* вертикальное центрирование */
+
+  background: #151515;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  
+  /* точные размеры из Figma, но не шире 90% экрана */
+  width: 340px;
+  height: 450px;
+  max-width: 90vw;
+  box-sizing: border-box;
+
+  opacity: 0.5;
+  transform: translateY(0) scale(0.95);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Иконка внутри карточки */
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Основной заголовок */
+.title {
+  color: #FFFFFF;             /* белый */
+  font-size: 1.3rem;          /* 24px / 16 = 1.5rem */
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+  text-align: center;
+  max-width: 200px;
+}
+
+/* Описательный текст */
+.desc {
+  color: #999999;             
+  font-size: 0.9375rem;       
+  line-height: 1.6;
+  text-align: center;
+  
+  /* new: ограничиваем ширину и центрируем */
+  max-width: 260px;
+  margin-top: 1rem;
+}
+
+/* Центральная карточка */
+.center {
+  opacity: 1;
+  transform: translateY(50px) scale(1); /* выпирает вниз */
+  z-index: 2;
+}
+
+/* Соседние карточки */
+.left,
+.right {
+  opacity: 0.5;
+  transform: translateY(0) scale(0.95);
+  z-index: 1;
+}

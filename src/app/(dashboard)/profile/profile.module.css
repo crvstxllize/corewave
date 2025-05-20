@@ -1,0 +1,16 @@
+/* src/app/(dashboard)/profile/profile.module.css */
+
+/* Обёртка страницы: flex-колонка, минимум 100% высоты экрана */
+.pageRoot {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+  color: #000;
+}
+
+/* Spacer между хэдером и футером */
+.spacer {
+  flex: 1;
+}
+

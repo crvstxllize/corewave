@@ -1,0 +1,28 @@
+/* контейнер секции */
+.root {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* описание под табами */
+.description {
+  margin: 1.5rem 0 3rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fadeUp {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 1s ease-out, transform 2.6s ease-out;
+}
+
+.fadeUp.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

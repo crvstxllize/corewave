@@ -1,0 +1,46 @@
+/* components/ui/landing/LanguageFeature/LanguageTabs.module.css */
+
+.tabs {
+  display: flex;
+  gap: 6rem;                 /* увеличить расстояние между табами */
+  justify-content: center;
+  margin-bottom: 3rem;     /* отступ до описания */
+  /* убрали border-bottom */
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6); /* неактивные — полупрозрачный белый */
+  font-size: 1rem;
+  font-weight: 540;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 0.25rem;   /* место для подчеркивания */
+  transition: color 0.3s;
+}
+
+.tab:hover,
+.tab:focus {
+  color: #fff;               /* при ховере — ярче */
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #BD3ECD;       /* новый фиолетовый */
+  transition: width 0.3s;
+}
+
+.tab.active {
+  color: #BD3ECD;            /* активный цвет текста */
+}
+
+.tab.active::after {
+  width: 100%;               /* линия под активным табом */
+}
