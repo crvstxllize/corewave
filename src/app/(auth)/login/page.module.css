@@ -1,28 +1,37 @@
+/* Container for centering the form */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo {
+  margin-bottom: 2rem;
+  margin-left: 1.2rem;
+  width: auto;
+  height: auto;
+}
+
+/* Page title */
 .title {
-  margin-top: -1rem;
   font-size: 1.6rem;
   font-weight: 600;
   color: #333333;
+  margin-bottom: 1.5rem;
 }
-.logo {
-  position: relative;
-  left: 0.8rem;
-  margin-bottom: 2rem;
-}
-.divider {
-  width: 100%;
-  text-align: center;
-  margin: 1.5rem 0;
-  position: relative;
-}
+
+/* Divider button (Sign in with Email) */
 .dividerButton {
-  width: 100%;
+  width: 140%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
   border: none;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   cursor: pointer;
 }
 
@@ -39,15 +48,15 @@
   color: #999999;
 }
 
-/* Форма */
+/* Form styling */
 .form {
-  width: 100%;
+  width: 130%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
-/* Группы полей */
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -59,11 +68,7 @@
   color: #555555;
 }
 
-.formGroup ::placeholder {
-  font-size: 0.8rem;
-}
-
-/* Инпуты */
+/* Input fields */
 .input {
   width: 100%;
   padding: 0.75rem;
@@ -75,9 +80,19 @@
 
 .input::placeholder {
   color: #E0E0E0;
+  font-size: 0.8rem;
 }
 
-/* Опции «Remember Me» и «Forgot Password?» */
+/* Error message */
+.error {
+  color: #B24093;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: left;
+}
+
+/* Options: Remember Me and Forgot Password */
 .options {
   display: flex;
   justify-content: space-between;
@@ -85,17 +100,15 @@
   font-size: 0.9rem;
 }
 
-/* Кастомный чекбокс */
 .checkboxContainer {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #555555;
 }
 
-/* Прятем дефолт */
 .checkboxContainer input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
@@ -108,32 +121,29 @@
   cursor: pointer;
 }
 
-/* Фон фиолетовый, когда отмечено */
 .checkboxContainer input[type="checkbox"]:checked {
   background-color: #B24093;
 }
 
-/* Белая галочка */
 .checkboxContainer input[type="checkbox"]:checked::after {
   content: '';
   position: absolute;
-  top: 2px; 
+  top: 2px;
   left: 4px;
-  width: 4px; 
+  width: 4px;
   height: 8px;
   border: solid #ffffff;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
 
-/* Ссылка «Forgot Password?» */
 .forgot {
   color: #B24093;
   text-decoration: none;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
-/* Кнопка «Login» */
+/* Submit button */
 .submit {
   width: 100%;
   padding: 0.75rem;
@@ -144,18 +154,20 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 10%;
-
+  margin-top: 1rem;
 }
 
-/* Нижняя строка-переключатель */
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Switch to register link */
 .switch {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
   font-size: 0.9rem;
   color: #666666;
   text-align: center;
-  margin-top: 15%;
-
 }
 
 .registerLink {

@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './hero.module.css'
 
-const RANDOM_CHARS = '!@#$%^&*()_+-=[]{}|;:<>?/ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const RANDOM_CHARS = '!@#$%^&*()_+-=[]{}|;:<>?/'
 
 export default function Hero() {
   const text = 'About us'
@@ -31,7 +31,7 @@ export default function Hero() {
     const animateLetter = (i: number) =>
       new Promise<void>(resolve => {
         const flickerCount = 5
-        const flickerSpeed = 150
+        const flickerSpeed = 50
         let step = 0
         const t = setInterval(() => {
           if (!isMounted) { clearInterval(t); return }

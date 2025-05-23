@@ -1,12 +1,59 @@
 'use client'
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    if (!email || !password) {
+      setError('Email and password are required.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch('http://localhost:5000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+
+      if (!data.success) {
+        throw new Error(data.message || 'Login failed.');
+      }
+
+      // Сохраняем токен
+      if (rememberMe) {
+        localStorage.setItem('token', data.token);
+      } else {
+        sessionStorage.setItem('token', data.token);
+      }
+
+      // Перенаправляем на профиль
+      router.push('/profile');
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <>
+    <div className={styles.container}>
       <Image
         className={styles.logo}
         src="/imgs/MyLogo.svg"
@@ -18,18 +65,16 @@ export default function LoginPage() {
 
       <h1 className={styles.title}>Login to your Account</h1>
 
-      {/* Дашевый, кликабельный разделитель */}
       <button
         type="button"
         className={styles.dividerButton}
-        onClick={() => {
-          /* TODO: здесь логика “Sign in with Email” */
-        }}
       >
         <span>Sign in with Email</span>
       </button>
 
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        {error && <p className={styles.error}>{error}</p>}
+
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>
           <input
@@ -37,6 +82,8 @@ export default function LoginPage() {
             type="email"
             placeholder="gmail@abc.com"
             className={styles.input}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
 
@@ -47,13 +94,18 @@ export default function LoginPage() {
             type="password"
             placeholder="••••••••••••••••"
             className={styles.input}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
 
-        {/* Remember Me + Forgot Password */}
         <div className={styles.options}>
           <label className={styles.checkboxContainer}>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={e => setRememberMe(e.target.checked)}
+            />
             <span>Remember Me</span>
           </label>
           <Link href="/auth/forgot" className={styles.forgot}>
@@ -61,8 +113,12 @@ export default function LoginPage() {
           </Link>
         </div>
 
-        <button type="submit" className={styles.submit}>
-          Login
+        <button
+          type="submit"
+          className={styles.submit}
+          disabled={loading}
+        >
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
 
@@ -72,6 +128,6 @@ export default function LoginPage() {
           Create an account
         </Link>
       </p>
-    </>
+    </div>
   );
 }

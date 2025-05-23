@@ -1,0 +1,74 @@
+/* components/ui/profile/profileEditForm/ProfileEditForm.module.css */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #fff;
+  opacity: 0;
+  animation: fadeSlideIn 1.5s ease-out 4s forwards;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  max-width: 550px;
+  padding: 1rem 1rem;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #ECEFF1;
+  color: #555;
+}
+
+.input::placeholder {
+  color: #8E8F91;
+}
+
+.button {
+  align-self: flex-start;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  color: #B24093;
+  background: rgba(178, 64, 147, 0.1);
+  border: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background: #FAD1E0;
+}
+
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px); /* старт слева или справа: положительное—сдвиг вправо */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
