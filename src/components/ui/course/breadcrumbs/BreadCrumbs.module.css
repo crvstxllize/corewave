@@ -1,0 +1,53 @@
+/* components/ui/profile/breadcrumbs/Breadcrumbs.module.css */
+
+.nav {
+  font-size: 1.1rem;
+  margin-top: 6rem;
+  margin-left: 11rem;
+  opacity: 0;
+  animation: fadeSlideIn 1.5s ease-out 2s forwards;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.sep {
+  margin: 0 1.5rem;
+  color: #bbb;
+}
+
+.link {
+  color: #000;
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+.current {
+  color: #7D7E82;
+  letter-spacing: 0.05em;
+}
+
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px); /* старт слева или справа: положительное—сдвиг вправо */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,67 @@
+/* src/components/ui/course/header/CourseHeader.module.css */
+
+.header {
+  width: 100%;
+  background-color: #fff !important;
+  color: #000 !important;
+  position: relative;
+  top: 2rem;
+
+  transform: translateY(-100%);
+  opacity: 0;
+  animation: dropDown 2.4s ease-out forwards;
+  z-index: 10;
+}
+
+.inner {
+  max-width: 1568px;
+  height: 60px;
+  padding: 02rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  /* Разносим logo и right по краям */
+}
+
+.spacer {
+  flex: 1;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  margin-right: 7rem;
+  gap: 5rem;
+}
+
+.attempts {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.attempts strong {
+  margin-left: 1rem;
+  color: #B24093;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes dropDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

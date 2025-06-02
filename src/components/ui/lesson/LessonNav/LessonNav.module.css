@@ -1,0 +1,64 @@
+/* components/ui/lesson/LessonNav/LessonNav.module.css */
+.navContainer {
+  width: 100%;
+  margin-top: 4rem;           /* отодвигает nav ниже липкого header */
+  padding: 0 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+/* Увеличил паддинг у кнопок для просторности */
+.arrowBtn {
+  background: none;
+  border: none;
+  padding: 0.75rem;           /* вместо просто line-height */
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Разнес стрелки от бара */
+.arrowBtn:first-of-type {
+  margin-right: 5rem;         /* увеличенный отступ слева от бара */
+}
+.arrowBtn:last-of-type {
+  margin-left: 5rem;          /* увеличенный отступ справа от бара */
+}
+
+.arrowBtn:hover:not(:disabled) {
+  transform: translateX(6px);
+}
+
+.arrowBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.progressBar {
+  flex: 1;
+  height: 5px;                /* чуть толще для акцента */
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #B24093;
+  border-radius: 10px 0 0 10px;  /* скругление совпадает с высотой */
+  transition: width 0.3s ease;
+}

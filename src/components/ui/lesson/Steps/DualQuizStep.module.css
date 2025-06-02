@@ -1,0 +1,175 @@
+/* ========================================================================
+   DualQuizStep.module.css
+   Двухцветная схема: #BD3ECD и #B24093 + их opacity для разных состояний
+   ======================================================================== */
+
+/* ----------------------------------------------
+   1) Общий контейнер (wrapper)
+   ---------------------------------------------- */
+.wrapper {
+  position: relative;     
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 2rem 1rem 0;
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------
+   2) Контент (ограниченная ширина, центр)
+   ---------------------------------------------- */
+.content {
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------
+   3) Анимация “shake” при неправильном ответе
+   ---------------------------------------------- */
+@keyframes shakeAnim {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shakeAnim 0.6s ease-in-out;
+}
+
+/* ----------------------------------------------
+   4) Блок с двумя кнопками-опциями
+   ---------------------------------------------- */
+.optionsWrapper {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* ----------------------------------------------
+   5) Общий стиль для кнопок-ответов
+   ---------------------------------------------- */
+.optBtn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px solid #BD3ECD;   /* обводка мягкого фиолета */
+  background-color: transparent;
+  color: #000;               /* текст того же мягкого фиолета */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+}
+
+/* ----------------------------------------------
+   6) Hover / Focus (до нажатия “Check”)
+      – фон #BD3ECD с opacity 0.1
+   ---------------------------------------------- */
+.optBtn:hover:not(:disabled),
+.optBtn:focus:not(:disabled) {
+  background-color: rgba(189, 62, 205, 0.1); /* #BD3ECD @ 10% */
+}
+
+/* ----------------------------------------------
+   7) Состояние “selected” (пользователь кликнул,
+      но ещё не нажал “Check”):
+      – фон #BD3ECD @ 20%, текст и обводка — тот же #BD3ECD
+   ---------------------------------------------- */
+.selected {
+  background-color: rgba(189, 62, 205, 0.2); /* #BD3ECD @ 20% */
+  color: #BD3ECD;
+  border-color: #BD3ECD;
+}
+
+/* ----------------------------------------------
+   8) Состояние “correct” (правильный ответ после “Check”):
+      – фон #B24093 @ 50%,
+      – текст и обводка — #B24093 (чистый)
+   ---------------------------------------------- */
+.correct {
+  background-color: #10B981; /* чистый зелёный фон */
+  color: #000000;            /* чёрный текст */
+  border-color: #10B981;    
+}
+
+/* ----------------------------------------------
+   9) Состояние “incorrect” (неверный ответ после “Check”):
+      – фон #B24093 @ 20%,
+      – текст и обводка — #B24093 (чистый)
+   ---------------------------------------------- */
+.incorrect {
+  background-color: #EF4444; /* чистый красный фон */
+  color: #000000;            /* чёрный текст */
+  border-color: #EF4444;     /* красная обводка */
+}
+
+/* ----------------------------------------------
+   10) Фиксированная полоса снизу с кнопкой “Check”
+   ---------------------------------------------- */
+.btnWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ECEFF1;   /* светло-серый фон, можно оставить или сменить */
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------
+   11) Сама кнопка “Check”:
+        - основной фон: #BD3ECD @ 50% (opacity 0.5),
+        - текст и обводка — чистый #BD3ECD,
+        - при hover делаем более непрозрачной (0.7),
+        - если disabled — opacity 0.3
+   ---------------------------------------------- */
+.checkBtn {
+  background-color: #BD3ECD;
+  color: #ffffff;
+  padding: 0.75rem 4rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  opacity: 0.7;
+}
+
+.checkBtn:hover:not(:disabled) {
+  background-color: rgba(189, 62, 205, 0.7); /* #BD3ECD @ 70% */
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.checkBtn:disabled {
+  background-color: rgba(189, 62, 205, 0.3); /* #BD3ECD @ 30% */
+  color: #BD3ECD;
+  cursor: default;
+  opacity: 0.3;
+}
+
+/* ----------------------------------------------
+   12) Конфетти-оверлей (full-screen)
+   ---------------------------------------------- */
+.confettiOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}

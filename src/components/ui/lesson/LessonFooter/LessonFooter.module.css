@@ -1,0 +1,27 @@
+/* components/ui/lesson/LessonFooter/LessonFooter.module.css */
+.footer {
+  width: 100%;
+  padding: 2rem 0;
+  background: #F3F6F8;       /* фон как на макете */
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.nextBtn,
+.checkBtn {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  background: #B24093;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.nextBtn:disabled,
+.checkBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

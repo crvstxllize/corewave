@@ -1,0 +1,62 @@
+/* components/ui/lesson/LessonHeader/LessonHeader.module.css */
+
+.header {
+  width: 100%;
+  background-color: #fff !important;
+  color: #000 !important;
+  position: relative;
+  top: 5rem;
+  transform: translateY(-100%);
+  z-index: 10;
+}
+
+.inner {
+  height: 60px;
+  padding: 0 2rem;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;    /* <-- добавлено */
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-left: 4rem;
+}
+
+.arrow {
+  transition: transform 0.4s ease;
+  margin-top: 0.5rem;
+}
+
+.backLink:hover .arrow {
+  transform: translateX(-10px);
+}
+
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.attempts {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
+  margin-right: 7rem;                   /* <-- убран margin */
+}
+
+.attempts strong {
+  margin-left: 0.5rem;
+  color: #B24093;
+}
+

@@ -1,6 +1,6 @@
-/* src/app/(dashboard)/profile/profile.module.css */
+/* src/app/(dashboard)/dashboard.module.css */
 
-.pageRoot {
+.dashboardRoot {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

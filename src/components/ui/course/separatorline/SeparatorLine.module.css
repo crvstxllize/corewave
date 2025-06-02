@@ -1,0 +1,21 @@
+.separator {
+  border: none;
+  height: 1px;               /* толщина линии */
+  background-color: #000;    /* полностью чёрная */
+  width: 70%;                /* можно подкорректировать ширину */
+  margin: 0rem auto;         /* центрируем и отступы сверху/снизу */
+
+  /* для анимации от центра */
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: expandLine 2.6s ease-out forwards;
+}
+
+@keyframes expandLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

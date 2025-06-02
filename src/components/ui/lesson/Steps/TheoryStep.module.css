@@ -1,0 +1,145 @@
+/* ========================================================================
+   TheoryStep.module.css
+   Убираем 100vh, добавляем fixed-позиционирование для .btnWrapper,
+   и даём .content отступ снизу, чтобы ничего не перекрывалось.
+   ======================================================================== */
+
+/* ----------------------------------------------
+   1) Корневой контейнер: уже без min-height и без relative
+   ---------------------------------------------- */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------
+   2) Основной контент:
+      - max-width, центрирование по горизонтали,
+      - margin-bottom = высота фикcированной полосы (ок. 4.5rem),
+        чтобы текст / картинки / код не «уходили» под кнопку.
+      ---------------------------------------------- */
+.content {
+  max-width: 700px;
+  width: 100%;
+  margin: auto 5rem; /* сверху 2rem, центр по горизонтали, снизу 5rem */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------
+   3) Заголовки, параграфы внутри content
+   ---------------------------------------------- */
+.content h2,
+.content h3,
+.content p {
+  width: 100%;
+  margin: 0.5rem 0;
+  color: #111827;
+  line-height: 1.6;
+}
+
+.content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.content p {
+  font-size: 1rem;
+}
+
+/* ----------------------------------------------
+   4) Стили для изображений внутри .content
+   (можно менять max-width, отступы, скругления и т.д.)
+   ---------------------------------------------- */
+.content img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 4px;
+  object-fit: contain;
+  margin-left: 3rem;
+}
+
+/* ----------------------------------------------
+   5) Стили для <pre> внутри .content
+   (ограничиваем ширину, центрируем, тёмный фон, горизонтальный скролл)
+   ---------------------------------------------- */
+.content pre {
+  width: 100%;
+  max-width: 700px;
+  background-color: #232323;
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0 0; /* горизонтально auto не нужен, т.к. content сам по центру */
+  margin-top: 3rem;
+  box-sizing: border-box;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.95rem;
+}
+
+/* ----------------------------------------------
+   6) Inline-код внутри параграфов (необязательно)
+   ---------------------------------------------- */
+.content code {
+  background-color: #F3F4F6;
+  color: #111827;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.95rem;
+}
+
+/* ----------------------------------------------
+   7) Полоса с кнопкой «Next»:
+      - position: fixed, чтобы всегда была внизу экрана,
+      - height ≈ 4.5rem (или на ваше усмотрение),
+      - background: #ECEFF1 и центрирование кнопки.
+   ---------------------------------------------- */
+.btnWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ECEFF1;
+  padding: 2rem 0;           /* 1rem сверху/снизу внутри полосы */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  /* При желании можно добавить тень сверху: */
+  /* box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1); */
+}
+
+/* ----------------------------------------------
+   8) Кнопка «Next» (фиолетовая)
+   ---------------------------------------------- */
+.nextBtn {
+  background-color: #BD3ECD;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 4rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.nextBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.nextBtn:disabled {
+  background-color: #C4B5FD;
+  cursor: default;
+  opacity: 0.7;
+}

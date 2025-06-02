@@ -1,0 +1,35 @@
+/* Обёртка всей секции с главами */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;           /* расстояние между главами */
+  padding: 5rem 0;     /* отступ сверху/снизу */
+  max-width: 67%;
+  margin: 0 auto;
+}
+
+/* Обёртка одной главы + её карточек */
+.chapterWrapper {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: 7rem;           /* расстояние между заголовком и карточками */
+}
+
+/* Левый столбец — заголовок главы */
+.chapterTitle {
+  flex: 0 0 200px;     /* фиксированная ширина для выравнивания всех заголовков */
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000;
+  white-space: nowrap; /* чтобы длинные названия не переносились */
+}
+
+/* Правый столбец — контейнер карточек */
+.cards {
+  flex: 1;             /* занимать всё оставшееся пространство */
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;         /* расстояние между карточками */
+}

@@ -1,0 +1,40 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 2.5rem 0;
+  margin-top: 7rem;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.barBackground {
+  width: 100%;
+  max-width: 550px; /* или подбери под свой макет */
+  height: 9px;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.barFilled {
+  height: 100%;
+  background: #BD3ECD; /* фиолетовый */
+  transition: width 0.3s ease;
+}

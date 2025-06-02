@@ -1,0 +1,62 @@
+/* Корневой контейнер карточки */
+.card {
+  position: relative;              /* для вертикальной полоски */
+  display: flex;
+  align-items: center;
+  background-color: #ECEFF1;       /* светло-серый фон */
+  border-radius: 1rem;             /* скруглённые углы */
+  padding: 2rem 3rem;            /* внутренние отступы */
+  border-left: 3px solid rgba(153, 153, 153, 0.5);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  width: 93%;
+
+  transition: border-left-color 0.5s ease-in-out;
+}
+
+.card:hover {
+  border-left-color: #BD3ECD;
+}
+
+/* Иконка урока */
+.icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  margin-right: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Блок с текстом */
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Заголовок урока */
+.title {
+  margin: 0 0 0.85rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Описание урока */
+.description {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #7D7E82;
+}
+
+/* Фиолетовая вертикальная "полоска прогресса" */
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: -20px;
+  width: 6px;                     /* толщина полоски */
+  height: 100%;
+  background-color: #000000;      /* фиолетовый цвет */
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
