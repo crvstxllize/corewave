@@ -63,7 +63,7 @@ export const courseLessons: Record<CourseKey, Chapter[]> = {
       title: 'Глава 2: Основы языка',
       lessons: [
         {
-          slug: 'variables-and-data-types',
+          slug: 'variables-and-data-typesP',
           title: 'Урок 3. Переменные и типы данных',
           description:
             'Узнайте, как хранить и манипулировать различными типами данных в Python.',
@@ -72,7 +72,7 @@ export const courseLessons: Record<CourseKey, Chapter[]> = {
           completed: false,
         },
         {
-          slug: 'operators-and-expressions',
+          slug: 'operators-and-expressionsP',
           title: 'Урок 4. Операторы и выражения',
           description:
             'Этот урок знакомит с арифметическими операторами, такими как сложение, вычитание, умножение и деление, а также с побитовыми операторами.',
@@ -195,7 +195,7 @@ export const courseLessons: Record<CourseKey, Chapter[]> = {
       title: 'Глава 2: Базовый синтаксис',
       lessons: [
         {
-          slug: 'variables-and-data-types',
+          slug: 'variables-and-data-typesJs',
           title: 'Урок 3. Переменные и типы данных',
           description:
             'Примитивы, объекты, dynamic typing, отличие var → let/const, автоматическое и явное приведение типов.',
@@ -308,7 +308,7 @@ export const courseLessons: Record<CourseKey, Chapter[]> = {
       title: 'Глава 2: Основы синтаксиса',
       lessons: [
         {
-          slug: 'variables-and-data-types',
+          slug: 'variables-and-data-typesC',
           title: 'Урок 3. Переменные и типы данных',
           description:
             'Изучим value-типы (int, double, bool, char, struct) и reference-типы (string, object, массивы, классы). Поймём, как они работают в C#.',
@@ -326,7 +326,7 @@ export const courseLessons: Record<CourseKey, Chapter[]> = {
           completed: false,
         },
         {
-          slug: 'operators-and-expressions',
+          slug: 'operators-and-expressionsС',
           title: 'Урок 5. Операторы и выражения',
           description:
             'От арифметики и логики до побитовых операций, операторов ??, ?:, тернарного ?, pattern-matching и ключевого слова is. Расставим приоритеты.',
@@ -401,6 +401,7 @@ export const courseLessons: Record<CourseKey, Chapter[]> = {
       ],
     },
   ],
+  
   java: [
     {
       title: 'Глава 1: Введение в Java',
@@ -429,7 +430,7 @@ export const courseLessons: Record<CourseKey, Chapter[]> = {
       title: 'Глава 2: Основы языка',
       lessons: [
         {
-          slug: 'variables-and-data-types',
+          slug: 'variables-and-data-typesJ',
           title: 'Урок 3. Переменные и типы данных',
           description:
             'Типы int, double, char, boolean, литералы, явное/неявное приведение, ключевое слово var (Java 10+).',
