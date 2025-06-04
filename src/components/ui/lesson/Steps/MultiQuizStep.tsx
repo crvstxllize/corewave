@@ -1,56 +1,109 @@
 // components/ui/lesson/Steps/MultiQuizStep.tsx
-import { useState } from 'react'
-import styles from './MultiQuizStep.module.css'
+import React, { useState } from 'react';
+import Confetti from 'react-confetti';
+import styles from './MultiQuizStep.module.css';
 
 interface Props {
-  content: React.ReactNode
-  options: string[]
-  correctIndex: number
-  onAnswer: (correct: boolean) => void
+  content: React.ReactNode;
+  options: string[];
+  correctIndex: number;
+  onAnswer: (correct: boolean) => void;
 }
 
-export default function MultiQuizStep({ content, options, correctIndex, onAnswer }: Props) {
-  const [choice, setChoice] = useState<number | null>(null)
-  const [checked, setChecked] = useState(false)
+export default function MultiQuizStep({
+  content,
+  options,
+  correctIndex,
+  onAnswer,
+}: Props) {
+  const [choice, setChoice] = useState<number | null>(null);
+  const [checked, setChecked] = useState(false);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [shake, setShake] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const handleCheck = () => {
-    if (choice === null) return
-    setChecked(true)
-    onAnswer(choice === correctIndex)
-  }
+    if (choice === null) return;
+
+    setChecked(true);
+    const correct = choice === correctIndex;
+    setIsCorrect(correct);
+
+    if (correct) {
+      // Показываем конфетти и через 3 сек. вызываем onAnswer(true)
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+        onAnswer(true);
+      }, 3000);
+    } else {
+      // Запускаем «тряску» на 600ms, а затем через 3 сек. вызываем onAnswer(false)
+      setShake(true);
+      setTimeout(() => setShake(false), 600);
+      setTimeout(() => {
+        onAnswer(false);
+      }, 3000);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.content}>
+      {/* 1) Блок «content» */}
+      <div className={`${styles.content} ${shake ? styles.shake : ''}`}>
         {content}
       </div>
 
-      <div className={styles.list}>
-        {options.map((opt, i) => (
-          <button
-            key={i}
-            className={
-              `${styles.itemBtn} ` +
-              (checked
-                ? (i === correctIndex
-                    ? styles.correct
-                    : (i === choice ? styles.incorrect : ''))
-                : (choice === i ? styles.selected : ''))
+      {/* 2) Список опций */}
+      <div className={`${styles.list} ${shake ? styles.shake : ''}`}>
+        {options.map((opt, i) => {
+          let btnClass = styles.itemBtn;
+          if (checked) {
+            if (i === correctIndex) {
+              btnClass += ` ${styles.correct}`;
+            } else if (i === choice) {
+              btnClass += ` ${styles.incorrect}`;
             }
-            onClick={() => !checked && setChoice(i)}
-          >
-            {opt}
-          </button>
-        ))}
+          } else if (choice === i) {
+            btnClass += ` ${styles.selected}`;
+          }
+
+          return (
+            <button
+              key={i}
+              className={btnClass}
+              onClick={() => {
+                if (!checked) setChoice(i);
+              }}
+              disabled={checked}
+            >
+              {opt}
+            </button>
+          );
+        })}
       </div>
 
-      <button
-        className={styles.checkBtn}
-        disabled={choice === null}
-        onClick={handleCheck}
-      >
-        Check
-      </button>
+      {/* 3) Фиксированная кнопка «Check» внизу */}
+      <div className={styles.btnWrapper}>
+        <button
+          className={styles.checkBtn}
+          onClick={handleCheck}
+          disabled={choice === null || checked}
+        >
+          Check
+        </button>
+      </div>
+
+      {/* 4) Конфетти при правильном ответе */}
+      {showConfetti && (
+        <div className={styles.confettiOverlay}>
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            recycle={false}
+            numberOfPieces={200}
+          />
+        </div>
+      )}
     </div>
-  )
+  );
 }

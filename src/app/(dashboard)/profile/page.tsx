@@ -15,9 +15,7 @@ import SeparatorLine   from '@/components/ui/profile/separatorLine/SeparatorLine
 import Footer          from '@/components/layouts/footer/dashboard/footer';
 
 import styles from './profile.module.css';
-// Правильный импорт из services, а не из data/dashboard
-import { getLanguageProgress, mockLanguages } from '@/data/dashboard/languageService';
-
+import { courseLessons, Chapter } from '@/data/dashboard/Course/lessonConfig';
 
 interface UserProfile {
   userId: number;
@@ -25,35 +23,30 @@ interface UserProfile {
   username: string;
   registeredAt: string;
   country: string;
-  // если сервер вернёт completedCourses, можно его сюда прописать
-  // completedCourses?: number;
 }
 
 export default function ProfilePage() {
   const router = useRouter();
 
-  // профиль
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState('');
 
-  // сразу инициализируем языки моками, чтобы не было "мигания" пустоты
-  const [languages, setLanguages] = useState<LanguageProgress[]>(mockLanguages);
+  // Массив с прогрессом по языкам текущего пользователя
+  const [languages, setLanguages] = useState<LanguageProgress[]>([]);
 
+  // Считаем, что currentUserId может меняться после фетча
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+
+  // ─────────────────────────────────────────────────────────────────
+  // Эффект #1: фетчим профиль и сохраняем userId
   useEffect(() => {
-    // 1) проверяем, есть ли токен
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     if (!token) {
       router.push('/login');
       return;
     }
 
-    // 2) подгружаем прогресс языков (сейчас мок)
-    getLanguageProgress()
-      .then(setLanguages)
-      .catch((e) => console.error('Ошибка загрузки языков:', e));
-
-    // 3) фетчим данные профиля
     fetch('http://localhost:5000/profile', {
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +67,12 @@ export default function ProfilePage() {
         if (!data.success) {
           throw new Error(data.message || 'Failed to load profile');
         }
+        // Сохраняем профиль в local state
         setProfile(data.profile);
+        // Сохраняем userId в localStorage и в состояние
+        const idString = String(data.profile.userId);
+        localStorage.setItem('currentUserId', idString);
+        setCurrentUserId(idString);
       })
       .catch(err => {
         console.error(err);
@@ -82,6 +80,70 @@ export default function ProfilePage() {
       })
       .finally(() => setLoading(false));
   }, [router]);
+  // ─────────────────────────────────────────────────────────────────
+
+
+  // ─────────────────────────────────────────────────────────────────
+  // Эффект #2: когда currentUserId появился (или изменился), пересчитываем прогресс языков
+  useEffect(() => {
+    if (!currentUserId) {
+      // Пока userId нет (еще не фетчнули профиль), не вычисляем прогресс
+      return;
+    }
+
+    const langs: LanguageProgress[] = [];
+
+    // Для каждого языка (ключ langKey) в courseLessons
+    Object.entries(courseLessons).forEach(([langKey, chapters]) => {
+      let total = 0;
+      let doneCount = 0;
+
+      chapters.forEach((chapter: Chapter) => {
+        chapter.lessons.forEach(lesson => {
+          total += 1;
+          // Читаем ключ вида user_<userId>_completed_<lessonSlug>
+          const doneKey = `user_${currentUserId}_completed_${lesson.slug}`;
+          if (localStorage.getItem(doneKey) === 'true') {
+            doneCount += 1;
+          }
+        });
+      });
+
+      const progress = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+
+      // Подбираем нужный файл-логотип из public/language-logos
+      let filename = '';
+      switch (langKey) {
+        case 'python':
+          filename = 'Python.svg';
+          break;
+        case 'javascript':
+          filename = 'JavaScript.svg';
+          break;
+        case 'csharp':
+          filename = 'Csharp.svg';
+          break;
+        case 'java':
+          filename = 'Javadark.svg';
+          break;
+        case 'sql':
+          filename = 'Sql.svg';
+          break;
+        default:
+          filename = 'default.svg';
+      }
+
+      langs.push({
+        name: langKey.charAt(0).toUpperCase() + langKey.slice(1),
+        iconUrl: `/language-logos/${filename}`,
+        progress,
+      });
+    });
+
+    setLanguages(langs);
+  }, [currentUserId]);
+  // ─────────────────────────────────────────────────────────────────
+
 
   if (loading) {
     return <div className={styles.loading}>Loading profile...</div>;
@@ -92,23 +154,21 @@ export default function ProfilePage() {
 
   return (
     <div className={styles.pageRoot}>
-      {/* Header */}
       <DashboardHeader />
 
-      {/* Breadcrumbs */}
       <div className={styles.breadcrumbs}>
         <Breadcrumbs mapping={{ profile: 'Profile' }} />
       </div>
 
-      {/* Main content */}
       <div className={styles.content}>
+        {/* Левая колонка */}
         <div className={styles.left}>
           <div className={styles.overviewWrapper}>
             <ProfileOverview
               user={{
                 username: profile.username,
                 registeredAt: profile.registeredAt,
-                completedCourses: 0, // позже можно взять из profile.completedCourses
+                completedCourses: 0,
                 flagUrl: `/icons/${profile.country.toLowerCase()}.png`,
               }}
             />
@@ -120,8 +180,8 @@ export default function ProfilePage() {
 
         <SeparatorLine />
 
+        {/* Правая колонка – прогресс */}
         <div className={styles.right}>
-          {/* Передаём прогресс языков */}
           <ProgressSection languages={languages} />
         </div>
       </div>

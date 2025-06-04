@@ -1,4 +1,4 @@
-// src/services/languageService.ts
+// src/data/dashboard/languageService.ts
 import type { LanguageProgress } from '@/components/ui/profile/progressSection/ProgressSection';
 
 // 1) Мок-массив всегда рядом с сервисом

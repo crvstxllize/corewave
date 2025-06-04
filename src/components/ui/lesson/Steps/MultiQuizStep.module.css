@@ -1,63 +1,223 @@
+/* ========================================================================
+   MultiQuizStep.module.css
+   Центрируем контент и выравниваем текст по левому краю, как в Theory и DualQuiz
+   ======================================================================== */
+
+/* ----------------------------------------------
+   1) Общий контейнер (wrapper)
+      – центрируем по горизонтали, flex-колонка
+   ---------------------------------------------- */
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;     /* .content будет центрирован по горизонтали */
   margin: 2rem 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* ----------------------------------------------
+   2) Блок “content”
+      – ограничиваем по ширине и центрируем сам блок,
+      – внутри текст выравниваем по левому краю,
+      – снизу запас под фиксированную полосу (футер)
+   ---------------------------------------------- */
 .content {
-  max-width: 640px;
-  margin-bottom: 1.5rem;
+  max-width: 640px;             /* ограничиваем ширину как раньше */
+  width: 100%;
+  margin: 1rem auto 1.5rem auto; /* сверху 1rem, auto слева/справа (центрируем), снизу 1.5rem */
+  text-align: left;             /* текст внутри – по левому краю */
+  box-sizing: border-box;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
+/* ----------------------------------------------
+   3) Заголовки / параграфы внутри .content
+      – добавлено выравнивание и отступы, аналогично Theory
+   ---------------------------------------------- */
+.content h2,
+.content h3,
+.content p,
+.content li {
+  width: 100%;
+  margin: 0.5rem 0;
+  color: #111827;
+  text-align: left;
+}
+
+.content h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.content p,
+.content li {
+  font-size: 1.1rem;
+}
+
+/* ----------------------------------------------
+   4) Стили блока “list” (список опций)
+      – стал центрированным контейнером (margin	auto),
+      – каждая карточка растягивается на всю ширину этого контейнера,
+      – gap между элементами 1.25rem
+   ---------------------------------------------- */
 .list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;             
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 1.5rem;
+  max-width: 600px;        /* прежняя ширина: 600px */
+  margin: 0 auto 1.5rem auto; /* сверху 0, auto слева/справа (центр), снизу 1.5rem */
+  box-sizing: border-box;
 }
 
+/* ----------------------------------------------
+   5) Анимация “shake” при неверном ответе
+   ---------------------------------------------- */
+@keyframes shakeAnim {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shakeAnim 0.6s ease-in-out;
+}
+
+/* ----------------------------------------------
+   6) Общий стиль для кнопок-опций (itemBtn)
+      – растягиваются на 100% ширины родителя (.list),
+      – padding и font-size как раньше, text-align: left,
+      – обводка #CCC, фон #FFF, скругление 8px, тень
+   ---------------------------------------------- */
 .itemBtn {
   width: 100%;
-  padding: 1rem;
-  text-align: left;
-  border: 2px solid #ccc;
+  padding: 1.5rem 1rem;      /* тот же padding */
+  font-size: 1.1rem;         /* чуть больше шрифт */
+  font-weight: 500;
+  text-align: left;          /* текст внутри – по левому краю */
+  border: 2px solid #CCCCCC;
   border-radius: 8px;
-  background: #fff;
+  background-color: #FFFFFF;
+  color: #000000;
   cursor: pointer;
-  transition: border-color .2s, background .2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: 
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
 }
 
-.itemBtn:hover:not(.correct):not(.incorrect) {
-  border-color: #A259FF;
+/* ----------------------------------------------
+   7) Hover (до “Check”): фиолетовая обводка, лёгкая тень
+   ---------------------------------------------- */
+.itemBtn:hover:not(.correct):not(.incorrect):not(.selected),
+.itemBtn:focus:not(.correct):not(.incorrect):not(.selected) {
+  border-color: #BD3ECD;
+  background-color: rgba(189, 62, 205, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ----------------------------------------------
+   8) Состояние “selected” (до “Check”):
+      – фиолетовая обводка + бледно-фиолетовый фон,
+      – тень чуть усилена
+   ---------------------------------------------- */
 .selected {
-  border-color: #A259FF;
-  background: #F8EAFE;
+  border-color: #BD3ECD;
+  background-color: rgba(189, 62, 205, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ----------------------------------------------
+   9) Состояние “correct” (правильный ответ после “Check”):
+      – зелёная обводка (#4CAF50) и бледно-зелёный фон (#E8F5E9),
+      – чёрный текст, усиленная тень
+   ---------------------------------------------- */
 .correct {
   border-color: #4CAF50;
-  background: #E8F5E9;
+  background-color: #E8F5E9;
+  color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ----------------------------------------------
+   10) Состояние “incorrect” (неверный ответ после “Check”):
+      – красная обводка (#F44336) и бледно-красный фон (#FFEBEE),
+      – чёрный текст, усиленная тень
+   ---------------------------------------------- */
 .incorrect {
   border-color: #F44336;
-  background: #FFEBEE;
+  background-color: #FFEBEE;
+  color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ----------------------------------------------
+   11) Фиксированная полоса снизу с кнопкой “Check”
+      – светло-серый фон, padding 1rem 0, центрирование
+   ---------------------------------------------- */
+.btnWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ECEFF1;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  /* box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);  при желании */
+}
+
+/* ----------------------------------------------
+   12) Кнопка “Check”
+      – фиолетовый фон (#B24093), белый текст, padding 0.75rem 2rem,
+        border-radius 8px, font-size 1rem, font-weight 500, тень
+   ---------------------------------------------- */
 .checkBtn {
-  background: #B24093;
-  color: #fff;
+  background-color: #B24093;
+  color: #FFFFFF;
   border: none;
   padding: 0.75rem 2rem;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
 }
+
+.checkBtn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .checkBtn:disabled {
   opacity: 0.5;
   cursor: default;
+  box-shadow: none;
+}
+
+/* ----------------------------------------------
+   13) Конфетти-оверлей (full-screen)
+      – поверх всего, pointer-events: none, z-index: 10
+   ---------------------------------------------- */
+.confettiOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
 }

@@ -6,21 +6,36 @@ import LessonCard from '../lessoncard/LessonCard'
 import type { Chapter } from '@/data/dashboard/Course/lessonConfig'
 import styles from './LessonSection.module.css'
 
-interface Props {
-  courseSlug: string        // теперь передаём здесь
-  chapters: Chapter[]
+interface LessonStatus {
+  slug: string
+  isDone: boolean
 }
 
-export default function LessonSection({ courseSlug, chapters }: Props) {
+interface Props {
+  courseSlug: string
+  chapters: Chapter[]
+  lessonStatuses?: LessonStatus[]
+}
+
+export default function LessonSection({
+  courseSlug,
+  chapters,
+  lessonStatuses = [],
+}: Props) {
+  // Вычисляем, сколько глав разблокировано
   const unlockedCount = useMemo(() => {
     let count = 1
     for (let i = 0; i < chapters.length; i++) {
-      if (i < count && chapters[i].lessons.every(l => l.completed)) {
-        count++
+      if (i < count) {
+        const allDone = chapters[i].lessons.every((lesson) => {
+          const status = lessonStatuses.find(s => s.slug === lesson.slug)
+          return status?.isDone === true
+        })
+        if (allDone) count++
       }
     }
     return Math.min(count, chapters.length)
-  }, [chapters])
+  }, [chapters, lessonStatuses])
 
   return (
     <section className={styles.root}>
@@ -33,17 +48,22 @@ export default function LessonSection({ courseSlug, chapters }: Props) {
               className={styles.cards}
               style={{ opacity: locked ? 0.5 : 1 }}
             >
-              {chap.lessons.map(lesson => (
-                <LessonCard
-                  key={lesson.slug}
-                  title={lesson.title}
-                  description={lesson.description}
-                  iconUrl={lesson.iconUrl}
-                  completed={lesson.completed}
-                  href={`/profile/${courseSlug}/${lesson.slug}`}
-                  disabled={locked}
-                />
-              ))}
+              {chap.lessons.map((lesson) => {
+                const status = lessonStatuses.find(s => s.slug === lesson.slug)
+                const isDone = status?.isDone ?? false
+
+                return (
+                  <LessonCard
+                    key={lesson.slug}
+                    title={lesson.title}
+                    description={lesson.description}
+                    iconUrl={lesson.iconUrl}
+                    completed={isDone}
+                    href={`/profile/${courseSlug}/${lesson.slug}`}
+                    disabled={locked}
+                  />
+                )
+              })}
             </div>
           </div>
         )

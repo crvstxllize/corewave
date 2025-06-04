@@ -1,11 +1,10 @@
-// src/app/(dashboard)/profile/[CourseSlug]/[LessonSlug]/page.tsx
 'use client'
 
 import React, { useState, useEffect } from 'react'
 import { useParams, useSearchParams, useRouter } from 'next/navigation'
 
-import LessonHeader from '@/components/ui/lesson/LessonHeader/LessonHeader'
-import LessonNav from '@/components/ui/lesson/LessonNav/LessonNav'
+import LessonHeader  from '@/components/ui/lesson/LessonHeader/LessonHeader'
+import LessonNav     from '@/components/ui/lesson/LessonNav/LessonNav'
 import LessonContent from '@/components/ui/lesson/LessonContent/LessonContent'
 
 import { lessonSteps, Step } from '@/data/dashboard/Lesson/lessonSteps'
@@ -18,46 +17,74 @@ export default function LessonPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
 
-  // 1. Достаём CourseSlug и LessonSlug из URL
   const CourseSlug = params?.CourseSlug as string
   const LessonSlug = params?.LessonSlug as string
-
-  // Приводим CourseSlug к нижнему регистру, чтобы найти в courseLessons
   const courseKey = CourseSlug.toLowerCase() as CourseKey
 
-  // 2. Ищем конфигурацию курса и урока в статическом объекте courseLessons
+  // Найти конфиг урока
   const chapters = courseLessons[courseKey]
   if (!chapters) return <p>Курс не найден</p>
 
-  // Вытягиваем все уроки из всех глав и находим нужный по slug
   const allLessons = chapters.flatMap(ch => ch.lessons)
   const lessonConfig = allLessons.find(l => l.slug === LessonSlug) as Lesson
   if (!lessonConfig) return <p>Урок не найден</p>
 
-  // 3. Берём массив шагов (step) из моков lessonSteps
   const steps: Step[] = lessonSteps[LessonSlug] || []
   const totalSteps = steps.length
 
-  // 4. Определяем initialIdx из query-параметра ?step=
   const raw = searchParams.get('step')
   const initialIdx = raw
     ? Math.min(Math.max(1, parseInt(raw, 10)), totalSteps) - 1
     : 0
 
-  // 5. Локальные состояния
-  // currentIdx — индекс текущего шага (0-based)
+  // ───────────────────────────────────────────────────────────────────────────
+  // 1) Узнаём userId из localStorage (или 'guest', если всё ещё нет)
+  const storedUserId = localStorage.getItem('currentUserId')
+  const userId = storedUserId ?? 'guest'
+
+  // 2) Ключ в localStorage, под которым храним JSON { attempts, lastRefill }
+  const attemptsKey = `user_${userId}_attemptsData`
+
+  // 3) Функция, которая возвращает объект { attempts, lastRefill } из localStorage,
+  //    или создаёт новый, если его там нет
+  function loadAttemptsData(): { attempts: number; lastRefill: number } {
+    const saved = localStorage.getItem(attemptsKey)
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved) as { attempts: number; lastRefill: number }
+        return parsed
+      } catch {
+        // Если JSON повреждён, сбросим
+      }
+    }
+    // Если нет данных – инициализируем
+    const now = Date.now()
+    const initial = { attempts: 10, lastRefill: now }
+    localStorage.setItem(attemptsKey, JSON.stringify(initial))
+    return initial
+  }
+
+  // 4) Состояние текущих попыток (число)
+  const [globalAttempts, setGlobalAttempts] = useState<number>(() => {
+    const { attempts, lastRefill } = loadAttemptsData()
+    const hoursPassed = (Date.now() - lastRefill) / (1000 * 60 * 60)
+    if (hoursPassed >= 1) {
+      // Если прошёл час или больше – сбрасываем
+      const resetData = { attempts: 10, lastRefill: Date.now() }
+      localStorage.setItem(attemptsKey, JSON.stringify(resetData))
+      return 10
+    }
+    return attempts
+  })
+
+  // 5) Состояние индекса текущего шага и массива флагов завершённых шагов
   const [currentIdx, setCurrentIdx] = useState<number>(initialIdx)
-
-  // attempts — сколько попыток осталось (изначально 10)
-  const [attempts, setAttempts] = useState<number>(10)
-
-  // completed — массив флагов, какие шаги уже завершены
-  // (например, если пользователь правильно ответил или прошёл «теорию»)
-  const [completed, setCompleted] = useState<boolean[]>(
-    Array(totalSteps).fill(false)
+  const [completedSteps, setCompletedSteps] = useState<boolean[]>(
+    () => Array(totalSteps).fill(false)
   )
+  // ───────────────────────────────────────────────────────────────────────────
 
-  // 6. Синхронизируем URL-параметр ?step=… → local state
+  // Синхронизируем query-параметр step → currentIdx
   useEffect(() => {
     const s = searchParams.get('step')
     if (s) {
@@ -66,81 +93,66 @@ export default function LessonPage() {
     }
   }, [searchParams, totalSteps])
 
-  // 7. Переход на указанный шаг (и замена URL без полной перезагрузки)
   const goStep = (idx: number) => {
     setCurrentIdx(idx)
-    // обновляем только query-параметр, не скроллим страницу наверх
     router.replace(
       `/profile/${courseKey}/${LessonSlug}?step=${idx + 1}`,
       { scroll: false }
     )
   }
 
-  // 8. Колбэк, который передаём в каждый step: пользователь ответил (правильно или нет)
   const handleAnswer = (correct: boolean) => {
+    // 6) При неверном ответе – уменьшаем attempts и сохраняем новый timestamp
     if (!correct) {
-      // уменьшаем кол-во попыток, если ответ был неверный
-      setAttempts(prev => Math.max(0, prev - 1))
+      setGlobalAttempts(prev => {
+        // Прочитаем старый объект
+        const data = loadAttemptsData()
+        const next = Math.max(0, data.attempts - 1)
+        const updated = { attempts: next, lastRefill: data.lastRefill }
+        localStorage.setItem(attemptsKey, JSON.stringify(updated))
+        return next
+      })
     }
 
-    // помечаем текущий шаг как завершённый (даже если ответ был неверный,
-    // чтобы progress-линейка это зафиксировала; можно изменить логику,
-    // если нужно помечать только «правильные» ответы)
-    setCompleted(prev => {
+    // 7) Отмечаем текущий шаг как завершённый (для прогресса урока)
+    setCompletedSteps(prev => {
       const copy = [...prev]
       copy[currentIdx] = true
       return copy
     })
 
-    // Если есть следующий шаг, переходим на него
+    // 8) Если это не последний шаг – переходим к следующему
     if (currentIdx < totalSteps - 1) {
       goStep(currentIdx + 1)
     } else {
-      // Если это был последний шаг, возвращаемся на страницу курса
+      // 9) Если последний шаг, то помечаем урок полностью завершённым
+      localStorage.setItem(`user_${userId}_completed_${LessonSlug}`, 'true')
+      // Сигнал курсу, чтобы обновил прогресс
+      localStorage.setItem('course_update', Date.now().toString())
       router.push(`/profile/${courseKey}`)
     }
   }
 
-  // 9. Вычисляем прогресс (доля завершённых шагов)
-  const progress = completed.filter(Boolean).length / totalSteps
-
-  // 10. Текущий объект step
+  const progress = completedSteps.filter(Boolean).length / totalSteps
   const step = steps[currentIdx]
 
   return (
     <div className={styles.container}>
-      {/* Шапка урока: «Назад к курсу» + отображение попыток */}
+      {/* Шапка урока – показываем globalAttempts */}
       <LessonHeader
         backHref={`/profile/${courseKey}`}
-        attempts={attempts}
+        attempts={globalAttempts}
       />
 
-      {/* Навигационная панель: заголовок, прогресс, кнопки Prev/Next */}
       <LessonNav
         title={lessonConfig.title}
         progress={progress}
         onPrev={() => currentIdx > 0 && goStep(currentIdx - 1)}
-        onNext={() => {
-          // В навигации кнопка «Next» всегда считается «правильным» ответом
-          // (например, если текущий шаг – теория, или если вы хотите давать возможность
-          // просто переключиться вперёд, даже не пройдя квиз). При желании здесь можно
-          // сделать disableNext={true} для quiz-шагов.
-          handleAnswer(true)
-        }}
+        onNext={() => handleAnswer(true)}
         disablePrev={currentIdx === 0}
         disableNext={currentIdx === totalSteps - 1}
       />
 
-      {/*
-        Основной контент – сам шаг.
-        Ключевой момент: мы даём LessonContent prop `step` и `onAnswer`,
-        а внутри LessonContent поймёт, какой именно Sub‐Component (Theory/
-        DualQuiz/MultiQuiz) рендерить.
-        Кроме того, чтобы каждый раз сбрасывалась внутренняя локальная
-        state (choice/checked) у дочернего шага при смене номера шага,
-        мы ставим key={currentIdx}. Тогда React будет размонтировать
-        старый дочерний компонент и смонтировать новый.
-      */}
       <LessonContent
         key={currentIdx}
         step={step}
