@@ -12,49 +12,49 @@ export const benefits: Benefit[] = [
   {
     id: 'foundation',
     icon: '/logos/ProgrammingIcon.svg',
-    title: 'Strong Programming Foundation.',
-    highlight: 'Programming',
+    title: 'Надёжная основа программирования.',
+    highlight: 'программирования',
     description:
-      'Master core concepts, syntax, and best practices in top programming languages.',
+      'Освой ключевые концепции, синтаксис и лучшие практики в ведущих языках программирования.',
   },
   {
     id: 'systems',
     icon: '/logos/SystemsIcon.svg',
-    title: 'Understanding of IT Systems.',
-    highlight: 'IT Systems',
+    title: 'Понимание ИТ-систем.',
+    highlight: 'ИТ-систем',
     description:
-      'Learn how computers, databases, and networks work together.',
+      'Узнай, как компьютеры, базы данных и сети взаимодействуют между собой.',
   },
   {
     id: 'problem',
     icon: '/logos/ProblemIcon.svg',
-    title: 'Problem-Solving Mindset.',
-    highlight: 'Problem-Solving',
+    title: 'Умение решать проблемы.',
+    highlight: 'решать проблемы',
     description:
-      'Develop logical thinking and debugging skills essential for coding.',
+      'Развивай логическое мышление и навыки отладки, необходимые для программирования.',
   },
   {
     id: 'experience',
     icon: '/logos/ExperienceIcon.svg',
-    title: 'Hands-on Experience.',
-    highlight: 'Experience',
+    title: 'Практический опыт.',
+    highlight: 'опыт',
     description:
-      'Solve real-world coding challenges and build practical projects.',
+      'Решай реальные задачи по программированию и создавай практические проекты.',
   },
   {
     id: 'career',
     icon: '/logos/СareerIcon.svg',
-    title: 'Career-Ready Skills.',
-    highlight: 'Career-Ready',
+    title: 'Карьерные навыки.',
+    highlight: 'Карьерные',
     description:
-      'Gain knowledge that prepares you for jobs in software development, cybersecurity, and more.',
+      'Приобретай знания, которые подготовят тебя к работе в разработке ПО, кибербезопасности и не только.',
   },
   {
     id: 'learning',
     icon: '/logos/LearningIcon.svg',
-    title: 'Convenient Interactive Learning.',
-    highlight: 'Interactive Learning',
+    title: 'Удобное интерактивное обучение.',
+    highlight: 'интерактивное обучение',
     description:
-      'Engage with structured lessons, instant feedback, and designed to keep you actively learning.',
+      'Вовлекайся в структурированные уроки, получай мгновенную обратную связь и продолжай учиться активно.',
   },
 ];

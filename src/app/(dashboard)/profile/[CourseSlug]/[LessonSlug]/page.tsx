@@ -48,7 +48,6 @@ export default function LessonPage() {
   // 5) Ключ в localStorage для хранения { attempts, lastRefill }
   const attemptsKey = `user_${userId}_attemptsData`
 
-  // 6) Утилита для чтения / создания данных попыток
   function loadAttemptsData(): { attempts: number; lastRefill: number } {
     const saved = localStorage.getItem(attemptsKey)
     if (saved) {
@@ -56,7 +55,6 @@ export default function LessonPage() {
         const parsed = JSON.parse(saved) as { attempts: number; lastRefill: number }
         return parsed
       } catch {
-        // Если JSON испорчен — сбросим ниже
       }
     }
     const now = Date.now()
@@ -65,12 +63,10 @@ export default function LessonPage() {
     return initial
   }
 
-  // 7) Состояние: число оставшихся попыток
   const [globalAttempts, setGlobalAttempts] = useState<number>(() => {
     const { attempts, lastRefill } = loadAttemptsData()
     const hoursPassed = (Date.now() - lastRefill) / (1000 * 60 * 60)
     if (hoursPassed >= 1) {
-      // Если прошёл час, сбросим на 10
       const resetData = { attempts: 10, lastRefill: Date.now() }
       localStorage.setItem(attemptsKey, JSON.stringify(resetData))
       return 10
@@ -102,7 +98,6 @@ export default function LessonPage() {
       const idx = Math.min(Math.max(1, parseInt(s, 10)), totalSteps) - 1
       setCurrentIdx(idx)
     }
-    // При переходе на новый шаг сбрасываем флаг штрафа
     setHasPenalizedThisStep(false)
   }, [searchParams, totalSteps])
 

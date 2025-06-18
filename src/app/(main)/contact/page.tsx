@@ -15,45 +15,41 @@ export default function ContactPage() {
       <div className={styles.divider} />
 
       <div className={styles.content}>
-        <h1 className={styles.heading}>Contacts</h1>
+        <h1 className={styles.heading}>Контакты</h1>
 
         <div className={styles.columns}>
           <div className={styles.column}>
             <p className={styles.title}>
-              <span>Phone</span>{' '}
-              <span className={styles.secondary}>number:</span>
+              <span>Номер</span>{' '}
+              <span className={styles.secondary}>телефона:</span>
             </p>
             <p className={styles.value}>+7 (777) 777 777</p>
           </div>
 
           <div className={styles.column}>
             <p className={styles.title}>
-              <span>e-</span>
-              <span className={styles.secondary}>mail:</span>
+              <span>Эл.</span>
+              <span className={styles.secondary}>почта:</span>
             </p>
             <p className={styles.value}>educorewave@gmail.com</p>
           </div>
 
           <div className={styles.column}>
             <p className={styles.title}>
-              <span>For</span>{' '}
-              <span className={styles.secondary}>cooperation</span>{' '}
-              <span>and</span>{' '}
-              <span className={styles.secondary}>advertising:</span>
+              <span>Для</span>{' '}
+              <span className={styles.secondary}>сотрудничества</span>{' '}
+              <span>и</span>{' '}
+              <span className={styles.secondary}>рекламы:</span>
             </p>
             <p className={styles.value}>corewave@icloud.com</p>
           </div>
         </div>
 
         <div className={styles.officeSection}>
-          <h2 className={styles.officeHeading}>
-            Office:
-          </h2>
-          <p className={styles.officeSubtitle}>
-            Republic of Kazakhstan, Almaty:
-          </p>
+          <h2 className={styles.officeHeading}>Офис:</h2>
+          <p className={styles.officeSubtitle}>Республика Казахстан, г. Алматы:</p>
           <p className={styles.officeText}>
-            st. Pushkina, h. Kalatushkina, 777th floor, 777 office
+            ул. Пушкина, 7 д. Калатушкина, 77 этаж, офис 777
           </p>
         </div>
       </div>

@@ -31,7 +31,7 @@ export default function FilterSidebar({ groups }: FilterSidebarProps) {
         return (
           <div key={group.title} className={styles.group}>
             <p className={styles.title}>
-              <span className={styles.available}>Available</span>{' '}
+              <span className={styles.available}>Доступные</span>{' '}
               <span className={styles.highlight}>{prettyTitle}</span>:
             </p>
             <ul className={styles.options}>

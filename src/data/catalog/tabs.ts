@@ -13,18 +13,18 @@ export const tabs: Tab[] = [
     id: 'programming',
     label: 'Programming languages',
     description:
-      'Each language opens new possibilities—whether it’s web development, data science, game creation, or automation. Pick one, start coding, and build your future.',
+      'Каждый язык открывает новые возможности—будь то веб‑разработка, анализ данных, создание игр или автоматизация процессов. Выбери один, начни кодить и строй своё будущее.',
   },
   {
     id: 'directions',
     label: 'IT directions',
     description:
-      'Every IT field opens up new horizons—whether it’s web development, programming or working with data. Master key technologies, start creating digital products and become a professional in your field.',
+      'Каждая область IT открывает новые горизонты—будь то веб‑разработка, программирование или работа с данными. Начни создавать современные и разнообразные цифровые продукты и стань профессионалом в своей сфере.',
   },
   {
     id: 'systems',
     label: 'Computer Systems',
     description:
-      'Discover the backbone of modern computing—hardware, operating systems, and networks. Learn how computers process information, how OS manage resources, and how networks connect the world.',
+      'Открой основу современного аппаратного обеспечение, операционных систем и сетей. Узнай, как компьютеры обрабатывают данные, как ОС управляют ресурсами и как сети соединяют весь мир.',
   },
 ];

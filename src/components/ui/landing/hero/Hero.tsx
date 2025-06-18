@@ -15,6 +15,12 @@ export default function Hero() {
       { base: '', words: ['FrontEnd/BackEnd?','Data Science?'],            delay: 1000 },
       { base: '', words: ['Want to know about Processor?','The answer is provided below!'], delay: 3000 }
     ];
+    // const sequences = [
+    //   { base: '', words: ['C чего начать изучение Python?','или JavaScript?'], delay: 1000 },
+    //   { base: '', words: ['Какое направление в IT выбрать?'],            delay: 1000 },
+    //   { base: '', words: ['FrontEnd/BackEnd?','Data Science?'],            delay: 1000 },
+    //   { base: '', words: ['Хочешь знать о Процессорах?','Corewave ответил на все ниже!'], delay: 3000 }
+    // ];
     let seqIndex = 0, wordIndex = 0, charIndex = 0;
     let isDeleting = false, isClearing = false;
     const container = typingRef.current!;

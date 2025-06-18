@@ -32,9 +32,9 @@ export default function Final() {
       className={`${styles.final} ${visible ? styles.visible : ''}`}
     >
       <h2 className={styles.title}>
-        Ready <span className={styles.highlight}>to start</span> ?
+        Ты готов <span className={styles.highlight}>начать</span> ?
       </h2>
-      <p className={styles.subtitle}>So… That’s all :)</p>
+      <p className={styles.subtitle}>Ну... На этом всё :)</p>
     </section>
   )
 }

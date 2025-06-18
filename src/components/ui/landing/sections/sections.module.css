@@ -78,7 +78,7 @@
 .directionSection {
   position: absolute;
   top: 65vh;         
-  right: 67rem;      /* подвинь по горизонтали, где надо */
+  right: 66rem;      /* подвинь по горизонтали, где надо */
   width: 600px;      /* фиксированная ширина блока */
   color: #fff;
   opacity: 0;
@@ -139,7 +139,7 @@
 .socialQuestionsSection {
   position: absolute;
   top: 115vh;       
-  left: 33.6rem;      
+  left: 29rem;      
   display: flex;
   align-items: flex-start;
   gap: 4rem;

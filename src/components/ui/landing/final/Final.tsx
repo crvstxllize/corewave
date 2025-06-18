@@ -1,4 +1,3 @@
-// src/components/ui/landing/final/Final.tsx
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './final.module.css'
@@ -19,7 +18,7 @@ export default function Final() {
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5, // когда 10% блока в зоне видимости
+        threshold: 0.5, // когда 50% блока в зоне видимости
       }
     )
     obs.observe(ref.current)
@@ -32,9 +31,9 @@ export default function Final() {
       className={`${styles.final} ${visible ? styles.visible : ''}`}
     >
       <h2 className={styles.title}>
-        Try <span className={styles.highlight}>it Yourself.</span>
+        Попробуй <span className={styles.highlight}>это сам.</span>
       </h2>
-      <p className={styles.subtitle}>So… What you tell about this?)</p>
+      <p className={styles.subtitle}>Ну… что ты скажешь об этом?)</p>
     </section>
   )
 }

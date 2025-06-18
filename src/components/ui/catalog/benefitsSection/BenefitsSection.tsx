@@ -30,11 +30,11 @@ export default function BenefitsSection() {
         className={`${styles.heading} ${inView ? styles.animateHeading : ''}`}
         style={{ '--delay': '2s' } as React.CSSProperties}
       >
-        <span className={styles.headingGrey}>What will</span>{' '}
-        <span className={styles.headingWhite}>you gain</span>{' '}
-        <span className={styles.headingGrey}>from</span>{' '}
-        <span className={styles.headingWhite}>this</span>{' '}
-        <span className={styles.headingGrey}>courses</span>
+        <span className={styles.headingGrey}>Что вы</span>{' '}
+        <span className={styles.headingWhite}>получите</span>{' '}
+        <span className={styles.headingGrey}>с этих</span>{' '}
+        <span className={styles.headingWhite}>всех</span>{' '}
+        <span className={styles.headingGrey}>курсов</span>
         <span className={styles.headingWhite}>?</span>
       </h2>
 

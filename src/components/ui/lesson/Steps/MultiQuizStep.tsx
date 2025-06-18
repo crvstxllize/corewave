@@ -30,14 +30,14 @@ export default function MultiQuizStep({
     setIsCorrect(correct);
 
     if (correct) {
-      // Показываем конфетти и через 3 сек. вызываем onAnswer(true)
+      // вызываем onAnswer(true)
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
         onAnswer(true);
       }, 3000);
     } else {
-      // Запускаем «тряску» на 600ms, а затем через 3 сек. вызываем onAnswer(false)
+      // вызываем onAnswer(false)
       setShake(true);
       setTimeout(() => setShake(false), 600);
       setTimeout(() => {

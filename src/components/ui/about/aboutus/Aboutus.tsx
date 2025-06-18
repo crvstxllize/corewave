@@ -1,4 +1,3 @@
-// src/components/ui/about/aboutSection/AboutSection.tsx
 'use client'
 import React, { useEffect, useState } from 'react'
 import styles from './aboutus.module.css'
@@ -22,24 +21,19 @@ export default function AboutSection() {
           className={`${styles.horizLine} ${step >= 1 ? styles.animateHoriz : ''}`}
         />
         {step >= 2 && (
-          <h2 className={styles.title}>About CoreWave.</h2>
+          <h2 className={styles.title}>О CoreWave.</h2>
         )}
       </div>
       {step >= 3 && (
         <div className={styles.text}>
           <p className={step >= 3 ? styles.fadeIn : ''}>
-            As a software development student, I wanted to build something practical,
-            something that could help beginners and aspiring developers gain real skills
-            in programming, databases, operating systems, and computer hardware.
+            Как студент по разработке ПО, я хотел создать что-то практичное, что помогло бы новичкам и начинающим разработчикам приобрести реальные навыки в программировании, работе с базами данных, операционных системах и аппаратном обеспечении компьютеров.
           </p>
           <p className={step >= 4 ? styles.fadeIn : ''}>
-            This project is my attempt to combine knowledge, technology, and usability
-            into a single learning hub.
+            Этот проект — моя попытка объединить знания, технологии и удобство использования в едином учебном центре.
           </p>
           <p className={step >= 5 ? styles.fadeIn : ''}>
-            CoreWave — is more than just an educational platform—it’s my final-year
-            diploma project, designed to bring structured, accessible, and interactive
-            IT learning to a wider audience.
+            CoreWave — это не просто образовательная платформа; это мой выпускной дипломный проект, призванный предоставить структурированное, доступное и интерактивное обучение IT для широкой аудитории.
           </p>
         </div>
       )}

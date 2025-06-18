@@ -24,8 +24,8 @@ export default function MainHeader() {
 
         {/* Переключатель языков */}
         <div className={styles.langSwitcher}>
-          <button className={styles.lang}>Kaz</button>
-          <button className={styles.lang}>Rus</button>
+          <button className={styles.lang}>Қаз</button>
+          <button className={styles.lang}>Рус</button>
           <button className={`${styles.lang} ${styles.active}`}>Eng</button>
         </div>
 
@@ -37,7 +37,7 @@ export default function MainHeader() {
               pathname === '/about' ? styles.navLinkActive : ''
             }`}
           >
-            ABOUT US
+            О НАС
           </Link>
           <Link
             href="/catalog"
@@ -45,7 +45,7 @@ export default function MainHeader() {
               pathname === '/catalog' ? styles.navLinkActive : ''
             }`}
           >
-            CATALOG
+            КАТАЛОГ
           </Link>
           <Link
             href="/contact"
@@ -53,13 +53,13 @@ export default function MainHeader() {
               pathname === '/contact' ? styles.navLinkActive : ''
             }`}
           >
-            CONTACT
+            КОНТАКТЫ
           </Link>
         </nav>
 
         {/* Кнопка входа */}
         <Link href="/login" className={styles.signIn}>
-          SIGN IN
+          ВОЙТИ
         </Link>
       </div>
     </header>

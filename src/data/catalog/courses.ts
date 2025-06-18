@@ -2,7 +2,7 @@
 
 import { TabId } from './tabs';
 
-export type Level = 'Introduction' | 'Intermediate' | 'Advanced';
+export type Level = 'Начальный' | 'Средний' | 'Продвинутый';
 
 export interface Course {
   id: string;
@@ -18,139 +18,139 @@ export interface Course {
 }
 
 export const courses: Course[] = [
-  // — Programming languages —
+  // — Языки программирования —
   {
     id: 'python',
     tab: 'programming',
-    level: 'Introduction',
+    level: 'Начальный',
     label: 'Python',
     title: 'Python',
     description:
-      'Learn the fundamentals of Python, from variables to basic data structures. Perfect for beginners starting their coding journey.',
+      'Изучи основы Python: от переменных до базовых структур данных. Идеально для новичков, начинающих путь в программировании.',
     icon: '/logos/Python.svg',
   },
   {
     id: 'javascript',
     tab: 'programming',
-    level: 'Introduction',
+    level: 'Начальный',
     label: 'JavaScript',
     title: 'JavaScript',
     description:
-      'Start coding with JavaScript! Learn how to create interactive web experiences and understand the core principles of programming.',
+      'Начни кодить на JavaScript! Узнай, как создавать интерактивные веб-страницы и пойми базовые принципы программирования.',
     icon: '/logos/JavaScript.svg',
   },
   {
     id: 'csharp',
     tab: 'programming',
-    level: 'Introduction',
+    level: 'Начальный',
     label: 'C#',
     title: 'C#',
     description:
-      'Master the basics of C#: syntax, object-oriented programming, and data structures. A great start for building games and applications.',
+      'Освой базовый синтаксис C#, объектно-ориентированное программирование и структуры данных. Отличный старт для создания игр и приложений.',
     icon: '/logos/C-sharp.svg',
   },
   {
     id: 'java',
     tab: 'programming',
-    level: 'Introduction',
+    level: 'Начальный',
     label: 'Java',
     title: 'Java',
     description:
-      'Explore the core concepts of Java, from syntax to classes and methods. A great start for Android development and enterprise apps.',
+      'Изучи ключевые концепции Java: от синтаксиса до классов и методов. Отличный выбор для разработки Android и корпоративных приложений.',
     icon: '/logos/Java.svg',
   },
   {
     id: 'sql',
     tab: 'programming',
-    level: 'Introduction',
+    level: 'Начальный',
     label: 'SQL',
     title: 'SQL',
     description:
-      'Start working with databases! Learn SQL syntax, filtering, and data manipulation for real-world applications.',
+      'Начни работать с базами данных! Изучи синтаксис SQL, фильтрацию и манипуляцию данными для реальных приложений.',
     icon: '/logos/Sql.svg',
   },
 
-  // — IT directions —
+  // — Направления ИТ —
   {
     id: 'webdev',
     tab: 'directions',
-    level: 'Introduction',
-    label: 'Web-Development',
-    title: 'Web-Development',
+    level: 'Начальный',
+    label: 'Веб-разработка',
+    title: 'Веб-разработка',
     description:
-      'Learn the fundamentals of web development, from HTML and CSS to JavaScript basics. Build interactive websites and gain the skills needed to start your journey.',
+      'Изучи основы веб-разработки — от HTML и CSS до базового JavaScript. Создавай интерактивные сайты и получай навыки для старта.',
     icon: '/logos/WebLogo.svg',
   },
   {
     id: 'datascience',
     tab: 'directions',
-    level: 'Introduction',
-    label: 'Data Science',
-    title: 'Data Science',
+    level: 'Начальный',
+    label: 'Анализ данных',
+    title: 'Анализ данных',
     description:
-      'Learn the fundamentals of Data Science, from data collection and processing to visualization and basic machine learning concepts.',
+      'Освой основы Data Science: от сбора и обработки данных до визуализации и базовых методов машинного обучения.',
     icon: '/logos/DataScienceLogo.svg',
   },
   {
     id: 'cybersecurity',
     tab: 'directions',
-    level: 'Introduction',
-    label: 'CyberSecurity',
-    title: 'CyberSecurity',
+    level: 'Начальный',
+    label: 'Кибербезопасность',
+    title: 'Кибербезопасность',
     description:
-      'Defend systems, secure networks, and outsmart hackers. Dive into the world of cybersecurity, where you’ll master encryption and ethical hacking.',
+      'Защищай системы, укрепляй сети и опережай хакеров. Погрузись в мир кибербезопасности и изучи шифрование и этичный взлом.',
     icon: '/logos/SecurityLogo.svg',
   },
   {
     id: 'android',
     tab: 'directions',
-    level: 'Introduction',
-    label: 'Android Development',
-    title: 'Android Development',
+    level: 'Начальный',
+    label: 'Разработка Android',
+    title: 'Разработка Android',
     description:
-      'Turn your ideas into mobile apps! Learn how to build Android applications from scratch using Java/Kotlin.',
+      'Воплоти идеи в мобильные приложения! Узнай, как создавать приложения для Android с нуля на Java и Kotlin.',
     icon: '/logos/AndroidLogo.svg',
   },
   {
     id: 'ai',
     tab: 'directions',
-    level: 'Introduction',
-    label: 'Artificial Intelligence',
-    title: 'Artificial Intelligence',
+    level: 'Начальный',
+    label: 'Искусственный интеллект',
+    title: 'Искусственный интеллект',
     description:
-      'Step into the world of AI! Learn the fundamentals of machine learning, neural networks, and data-driven decision-making.',
+      'Шагни в мир AI! Изучи основы машинного обучения, нейронных сетей и принятия решений на основе данных.',
     icon: '/logos/Artificial Intelligence.svg',
   },
 
-  // — Computer Systems —
+  // — Компьютерные системы —
   {
     id: 'architecture',
     tab: 'systems',
-    level: 'Introduction',
-    label: 'Computer Architecture',
-    title: 'Computer Architecture',
+    level: 'Начальный',
+    label: 'Архитектура компьютеров',
+    title: 'Архитектура компьютеров',
     description:
-      'Understand how computers work at their core! Learn about CPUs, memory, and data processing. Explore the principles of computer architecture.',
+      'Пойми, как работают компьютеры в глубине! Изучи CPU, память и обработку данных. Открой принципы архитектуры.',
     icon: '/logos/Architecture.svg',
   },
   {
     id: 'os',
     tab: 'systems',
-    level: 'Introduction',
-    label: 'Operating Systems',
-    title: 'Operating Systems',
+    level: 'Начальный',
+    label: 'Операционные системы',
+    title: 'Операционные системы',
     description:
-      'Uncover the inner workings of operating systems! Learn how OS manage processes, memory, and storage.',
+      'Разбери внутреннюю работу ОС! Узнай, как операционные системы управляют процессами, памятью и хранилищем.',
     icon: '/logos/OS.svg',
   },
   {
     id: 'networks',
     tab: 'systems',
-    level: 'Introduction',
-    label: 'Computer Networks',
-    title: 'Computer Networks',
+    level: 'Начальный',
+    label: 'Компьютерные сети',
+    title: 'Компьютерные сети',
     description:
-      'Dive into the world of computer networks! Learn how data travels across the internet, explore key networking concepts like IP, DNS, and TCP/IP.',
+      'Погрузись в мир сетей! Изучи, как данные передаются в интернете, и ключевые концепции: IP, DNS и TCP/IP.',
     icon: '/logos/Networks.svg',
   },
 ];

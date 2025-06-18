@@ -11,7 +11,7 @@ export default function Sections() {
   const [dirVisible, setDirVisible] = useState(false);
   const socialRef = useRef<HTMLElement>(null);
   const [socialVisible, setSocialVisible] = useState(false);
-  // 1 section
+
   useEffect(() => {
     if (!introRef.current) return;
     const observer = new IntersectionObserver(
@@ -21,45 +21,41 @@ export default function Sections() {
           observer.disconnect();
         }
       },
-      {
-        root: null,
-        rootMargin: '0px 0px -100px 0px',  // чуть раньше, чем полностью в зоне
-        threshold: 0,                       // срабатываем при любом пересечении
-      }
+      { root: null, rootMargin: '0px 0px -100px 0px', threshold: 0 }
     );
     observer.observe(introRef.current);
     return () => observer.disconnect();
   }, []);
-  // 2 section
+
   useEffect(() => {
-      if (!dirRef.current) return;
-      const obs2 = new IntersectionObserver(
-        ([e]) => {
-          if (e.isIntersecting) {
-            setDirVisible(true);
-            obs2.disconnect();
-          }
-        },
-        { threshold: 0, rootMargin: '0px 0px -100px 0px' }
-      );
-      obs2.observe(dirRef.current);
-      return () => obs2.disconnect();
-    }, []);
-    // 3 section
-    useEffect(() => {
-      if (!socialRef.current) return;
-      const obs3 = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setSocialVisible(true);
-            obs3.disconnect();
-          }
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-      );
-      obs3.observe(socialRef.current);
-      return () => obs3.disconnect();
-    }, []);
+    if (!dirRef.current) return;
+    const obs2 = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setDirVisible(true);
+          obs2.disconnect();
+        }
+      },
+      { threshold: 0, rootMargin: '0px 0px -100px 0px' }
+    );
+    obs2.observe(dirRef.current);
+    return () => obs2.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!socialRef.current) return;
+    const obs3 = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSocialVisible(true);
+          obs3.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+    );
+    obs3.observe(socialRef.current);
+    return () => obs3.disconnect();
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -74,32 +70,28 @@ export default function Sections() {
         color="#151515"
       />
 
-
       {/* === СЕКЦИЯ INTRO === */}
       <section
         ref={introRef}
-        className={`${styles.introSection} ${
-          introVisible ? styles.introVisible : ''
-        }`}
+        className={`${styles.introSection} ${introVisible ? styles.introVisible : ''}`}
       >
         <h2 className={styles.sloganLogo}>CoreWave</h2>
         <blockquote className={styles.quote}>
-          <span className={styles.grayText}>"Surf the </span>
-          <span className={styles.whiteText}>wave </span>
-          <span className={styles.grayText}>of </span>
-          <span className={styles.whiteText}>knowledge, </span><br/>
-          <span className={styles.whiteText}>step </span>
-          <span className={styles.grayText}>by </span>
-          <span className={styles.whiteText}>step</span>
-          <span className={styles.grayText}>."</span>
+          <span className={styles.grayText}>Лови волну </span>
+          <span className={styles.whiteText}>знаний </span>
+          <span className={styles.grayText}>шаг </span>
+          <span className={styles.whiteText}>за </span><br/>
+          <span className={styles.whiteText}>шагом </span>
+          <span className={styles.grayText}>к </span>
+          <span className={styles.whiteText}>успеху</span>
+          <span className={styles.grayText}>.»</span>
         </blockquote>
         <p className={styles.tagline}>
-          Learn, practice, and reach new heights in IT with interactive learning
+          Учись, практикуйся и достигай новых высот в IT с интерактивным обучением
         </p>
-        <a href="/catalog" className={styles.ctaButton}>&lt;/&gt; Start learning</a>
-        {/* <Link href="/catalog" className={styles.ctaButton}>&lt;/&gt; Start learning </Link> */}
+        <a href="/catalog" className={styles.ctaButton}>&lt;/&gt; Начать обучение</a>
+        {/* <Link href="/catalog" className={styles.ctaButton}>&lt;/&gt; Начать обучение</Link> */}
       </section>
-
 
       {/* 2-я линия */}
       <DiagonalDivider
@@ -112,39 +104,34 @@ export default function Sections() {
         color="#151515"
       />
 
-
       {/* === СЕКЦИЯ CHOOSE DIRECTION === */}
       <section
         ref={dirRef}
-        className={`${styles.directionSection} ${
-          dirVisible ? styles.directionVisible : ''
-        }`}
+        className={`${styles.directionSection} ${dirVisible ? styles.directionVisible : ''}`}
       >
         <div className={styles.directionInner}>
           <img
             src="/icons/graduate.svg"
-            alt="Graduation cap"
+            alt="Академическая шапка"
             className={styles.directionIcon}
           />
           <div className={styles.directionContent}>
             <blockquote className={styles.directionTitle}>
-            <span className={styles.grayText}>Choose a </span>
-            <span className={styles.whiteText}>direction </span>
-            <span className={styles.grayText}>in {'<'}</span>
-            <span className={styles.whiteText}>IT</span>
-            <span className={styles.grayText}>{'>'}</span>
+              <span className={styles.grayText}>Выбери свой </span>
+              <span className={styles.whiteText}>путь </span>
+              <span className={styles.grayText}>в {'<'} </span>
+              <span className={styles.whiteText}>IT</span>
+              <span className={styles.grayText}>{'>'}</span>
             </blockquote>
             <p className={styles.directionText}>
-              Find your path in IT, learn what really matters, and
-              start building your dream career today
+              Найди свой путь в IT, изучи действительно главное и начни уже сегодня строить карьеру своей мечты
             </p>
             <a href="/catalog" className={styles.directionLink}>
-              Catalog&nbsp;<span className={styles.arrow}>→</span>
+              Каталог&nbsp;<span className={styles.arrow}>→</span>
             </a>
           </div>
         </div>
       </section>
-
 
       {/* 3-я линия */}
       <DiagonalDivider
@@ -157,20 +144,17 @@ export default function Sections() {
         color="#151515"
       />
 
-
       {/* === СЕКЦИЯ 3: SOCIAL & QUESTIONS === */}
       <section
         ref={socialRef}
-        className={`${styles.socialQuestionsSection} ${
-          socialVisible ? styles.socialVisible : ''
-        }`}
+        className={`${styles.socialQuestionsSection} ${socialVisible ? styles.socialVisible : ''}`}
       >
         {/* — Social networks */}
         <div className={styles.socialNetworks}>
           <blockquote className={styles.socialTitle}>
-            <span className={styles.grayText}>Our </span>
-            <span className={styles.whiteText}>social </span>
-            <span className={styles.whiteText}>networks</span>
+            <span className={styles.grayText}>Наши </span>
+            <span className={styles.whiteText}>социальные </span>
+            <span className={styles.whiteText}>сети</span>
           </blockquote>
           <ul className={styles.socialList}>
             <li><a href="https://www.instagram.com/accounts/emailsignup/" target="_blank" rel="noopener noreferrer" className={styles.socialLink1}>Instagram</a></li>
@@ -187,10 +171,10 @@ export default function Sections() {
           <div className={styles.questionsHeader}>
             <img src="/icons/headset.svg" alt="" className={styles.icon} />
             <blockquote className={styles.questionsTitle}>
-            <span className={styles.whiteText}>Questions </span>
-            <span className={styles.grayText}>or </span>
-            <span className={styles.whiteText}>Error</span>
-            <span className={styles.grayText}>?</span>
+              <span className={styles.whiteText}>Вопросы </span>
+              <span className={styles.grayText}>или </span>
+              <span className={styles.whiteText}>ошибки</span>
+              <span className={styles.grayText}>?</span>
             </blockquote>
           </div>
           <ul className={styles.contactList}>

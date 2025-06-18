@@ -2,9 +2,9 @@
 import type { LanguageKey } from './languages';
 
 export const languageDescriptions: Record<LanguageKey, string> = {
-  JavaScript: 'CoreWave is uncluttered: choose a programming language, use templates to get started, or connect to a project and start coding now.',
-  Python:    'Grab a Python REPL in seconds, explore data science packages, or spin up a FastAPI server—all in one place.',
-  'C#':      'Create .NET Core apps, experiment with Blazor, or dive into Unity scripting right from your browser sandbox.',
-  Java:      'Compile and run Java SE, build Spring Boot microservices, or tweak Android demos without any local setup.',
-  Sql:       'Query sample databases, build schemas with our visual editor, or learn T-SQL/PL-SQL interactively.',
+  JavaScript: 'CoreWave не перегружен: выбери язык программирования, используй шаблоны для старта или подключись к своему проекту и начинай писать код прямо сейчас.',
+  Python:    'Запусти Python REPL за секунды, быстро изучай пакеты для анализа данных или разверни сервер FastAPI — всё в одном месте.',
+  'C#':      'Создавай .NET Core-приложения, экспериментируй с Blazor или сразу погружайся в скрипты Unity прямо в веб-песочнице своего браузера.',
+  Java:      'Компилируй и запускай Java SE, создавай микросервисы на Spring Boot или настрой демо Android без локальной установки.',
+  Sql:       'Запрашивай примеры баз, строй схемы в визуальном редакторе или наглядно изучай T-SQL/PL-SQL интерактивно.',
 };
