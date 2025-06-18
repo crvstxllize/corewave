@@ -63,7 +63,7 @@ export default function LoginPage() {
         priority
       />
 
-      <h1 className={styles.title}>Login to your Account</h1>
+      <h1 className={styles.title}>Login to ur Account</h1>
 
       <button
         type="button"
