@@ -1,4 +1,4 @@
-// src/data/lessonSteps.tsx
+﻿// src/data/lessonSteps.tsx
 import { ReactNode } from 'react'
 
 export type StepType = 'theory' | 'dual-quiz' | 'multi-quiz'
@@ -105,14 +105,14 @@ const whyPythonSteps: Step[] = [
         <pre>
           <code>a = 10</code>
         </pre>
-        <p>
-          Здесь:
+        <div>
+          <p>Здесь:</p>
           <ul>
             <li><code>a</code> — имя переменной,</li>
             <li><code>=</code> — оператор присваивания,</li>
             <li><code>10</code> — само значение.</li>
           </ul>
-        </p>
+        </div>
         <p>
           Благодаря отступам сразу видно уровень вложенности. Такой подход делает код 
           лёгким для чтения и поддержки.
@@ -2084,3 +2084,5 @@ export const lessonSteps: Record<string, Step[]> = {
   'introduction-to-sql': introductionToSqlSteps,
   'data-types-and-table-creation': dataTypesCreateTablesSteps,
 }
+
+

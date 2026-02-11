@@ -1,5 +1,5 @@
+import 'dotenv/config';
 import express      from 'express';
-import bodyParser   from 'body-parser';
 import config       from './config/index.js';
 import { initDb }   from './db/index.js';
 import authRoutes   from './routes/auth.js';
@@ -9,13 +9,16 @@ import errorHandler from './middleware/errorHandler.js';
 import cors from 'cors';
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
+const corsOrigins = (process.env.CORS_ORIGINS || 'http://localhost:3000')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean);
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: corsOrigins,
   credentials: true
 }));
-app.use(bodyParser.json());
-
 (async () => {
   await initDb();
 })();

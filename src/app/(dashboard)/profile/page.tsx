@@ -47,7 +47,13 @@ export default function ProfilePage() {
       return;
     }
 
-    fetch('http://localhost:5000/profile', {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!apiUrl) {
+      setError('API URL is not configured.');
+      setLoading(false);
+      return;
+    }
+    fetch(`${apiUrl}/profile`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -57,15 +63,18 @@ export default function ProfilePage() {
         if (!res.ok) {
           if (res.status === 401) {
             router.push('/login');
-            return;
+            return null;
           }
-          throw new Error('Failed to fetch profile');
+          setError('Failed to fetch profile');
+          return null;
         }
         return res.json();
       })
       .then(data => {
+        if (!data) return;
         if (!data.success) {
-          throw new Error(data.message || 'Failed to load profile');
+          setError(data.message || 'Failed to load profile');
+          return;
         }
         // Сохраняем профиль в local state
         setProfile(data.profile);
