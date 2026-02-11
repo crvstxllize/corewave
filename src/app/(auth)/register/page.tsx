@@ -16,10 +16,12 @@ export default function RegisterPage() {
   const [termsChecked, setTermsChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
 
     if (!username || !email || !password || !confirmPassword) {
       setError('All fields are required.');
@@ -37,23 +39,56 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-      if (!apiUrl) throw new Error('API URL is not configured.');
-      const res = await fetch(`${apiUrl}/auth/register`, {
+      if (!apiUrl?.trim()) throw new Error('API URL is not configured. Check NEXT_PUBLIC_API_URL.');
+      const requestUrl = `${apiUrl}/auth/register`;
+      console.info('[register] request', { requestUrl });
+
+      const res = await fetch(requestUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password, repeatPassword: confirmPassword })
       });
-      const data = await res.json();
+      const rawText = await res.text();
+      let data: any = null;
+      try {
+        data = rawText ? JSON.parse(rawText) : null;
+      } catch {
+        data = null;
+      }
+
+      console.info('[register] response', {
+        requestUrl,
+        status: res.status,
+        ok: res.ok,
+        responseText: rawText,
+        responseJson: data
+      });
+
+      if (!res.ok) {
+        throw new Error(data?.message || `Registration failed (HTTP ${res.status}).`);
+      }
 
       if (!data.success) {
         throw new Error(data.message || 'Registration failed.');
       }
 
-      // Вывести уведомление и перенаправить на вход
-      alert('Registration successful! Please log in.');
+      const successMessage = data.message || 'Registration successful! Please log in.';
+      setSuccess(successMessage);
+      alert(successMessage);
       router.push('/login');
     } catch (err: any) {
-      setError(err.message);
+      const isFetchFailed = err instanceof TypeError || err?.message === 'Failed to fetch';
+      const message =
+        isFetchFailed
+          ? 'Cannot reach API. Check NEXT_PUBLIC_API_URL, backend availability, and CORS (localhost:3000 / 127.0.0.1:3000).'
+          : (err?.message || 'Registration failed.');
+      setError(message);
+      console.error('[register] request failed', {
+        name: err?.name,
+        message: err?.message,
+        cause: err?.cause,
+        stack: err?.stack
+      });
     } finally {
       setLoading(false);
     }
@@ -79,6 +114,7 @@ export default function RegisterPage() {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         {error && <p className={styles.error}>{error}</p>}
+        {success && <p>{success}</p>}
 
         <div className={styles.formGroup}>
           <label htmlFor="username">Username</label>

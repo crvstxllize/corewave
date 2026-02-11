@@ -19,9 +19,6 @@ app.use(cors({
   origin: corsOrigins,
   credentials: true
 }));
-(async () => {
-  await initDb();
-})();
 
 app.use('/auth',    authRoutes);
 app.use('/profile', authMiddleware, profileRoutes);
@@ -29,6 +26,16 @@ app.use('/profile', authMiddleware, profileRoutes);
 // глобальный обработчик ошибок
 app.use(errorHandler);
 
-app.listen(config.port, () => {
-  console.log(`🔗 Backend running on http://localhost:${config.port}`);
+async function startServer() {
+  await initDb();
+  console.log('SQLite initialized and migrations applied');
+
+  app.listen(config.port, () => {
+    console.log(`🔗 Backend running on http://localhost:${config.port}`);
+  });
+}
+
+startServer().catch((err) => {
+  console.error('Failed to start backend', err);
+  process.exit(1);
 });

@@ -7,22 +7,31 @@ import { validateRegister, validateLogin }   from '../utils/validators.js';
 
 export async function register(req, res, next) {
   try {
+    const { username, email } = req.body || {};
+    console.info('[auth/register] incoming request', {
+      email,
+      hasUsername: Boolean(username)
+    });
+
     const errMsg = validateRegister(req.body);
     if (errMsg) {
       return res.status(400).json({ success: false, message: errMsg });
     }
 
-    const { username, email, password } = req.body;
+    const { password } = req.body;
     if (await findUserByEmail(email)) {
-      return res.status(400).json({ success: false, message: 'Email already in use' });
+      return res.status(409).json({ success: false, message: 'Email already in use' });
     }
 
     const hash   = await bcrypt.hash(password, 10);
     const userId = await createUser(email, hash);
     await createProfile(userId, username);
 
-    return res.json({ success: true });
+    return res.status(201).json({ success: true, message: 'Registration successful' });
   } catch (err) {
+    console.error('[auth/register] failed', {
+      message: err?.message
+    });
     next(err);
   }
 }
